@@ -18,12 +18,24 @@ end_tx = "\x03"
 empty_space = "\x00"
 
 # Read multiple blocks as string
-read_multiple_string = "\x02sMN RdMltBlckStr\x03"
+read_multiple_string = "sMN RdMltBlckStr"
 
 # Write multiple blocks as string
 write_multiple_string = "sMN WrtMltBlckStr"
 
 write_multiple_test = '\x02sMN WrtMltBlckStr 20 E1 75 37 50 1 4 E0 0 1 8 12345679\x03'
+
+
+def read_blocks(tag_uid, start_block, finish_block):
+
+    # convert the blocks to string
+    start_block = str(start_block)
+    finish_block = str(finish_block)
+
+    # Construct the read command for the RFID transponder
+    read_command = start_tx + read_multiple_string + " " + tag_uid + " " + start_block + " " + finish_block + end_tx
+
+    return read_command
 
 
 def write_custom_string(tag_uid, user_entry):
@@ -70,6 +82,24 @@ in order to transmit the information to the RFID transponder
                                + " " + string_count_hex + " " + user_entry + end_tx
 
     return transmission_command
+
+
+def extract_uid(hex_string):
+    # This functions takes the UID values and fills with zeros the values under 0xA
+
+    # get the count of present tags
+    tags_counter = hex_string[13:17]
+
+    # No tag is present
+    if tags_counter == "1 22":
+        raw_uid = "No Tag"
+    # one Tag is present
+    elif tags_counter == "1 0 ":
+        raw_uid = hex_string[21:-1]
+    else:
+        raw_uid = "Error"
+
+    return raw_uid
 
 
 def read_tag_content(tag_uid):

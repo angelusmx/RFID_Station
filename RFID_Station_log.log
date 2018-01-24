@@ -1,0 +1,45 @@
+INFO:root:Application Started
+INFO:root:Main PyQt window started
+2018-01-22 23:25:18,256 Application Started
+2018-01-22 23:25:18,513 Main PyQt window started
+2018-01-23 00:06:51,930 Application Started
+2018-01-23 00:07:24,734 Application Started
+2018-01-23 00:07:50,154 Application Started
+2018-01-23 00:07:54,927 Main PyQt window started
+2018-01-23 00:08:52,924 Application Started
+2018-01-23 00:09:00,802 Application Started
+2018-01-23 00:09:03,924 Main PyQt window started
+2018-01-23 00:09:17,799 Application Started
+2018-01-23 00:09:17,871 Main PyQt window started
+2018-01-23 00:09:32,838 Application Started
+2018-01-23 00:09:40,404 Main PyQt window started
+2018-01-23 00:15:53,239 Application Started
+2018-01-23 00:16:01,482 Main PyQt window started
+2018-01-23 00:16:11,599 Application Started
+2018-01-23 00:16:13,661 Main PyQt window started
+2018-01-23 00:17:28,219 Application Started
+2018-01-23 00:17:33,328 Main PyQt window started
+2018-01-23 00:18:04,608 Application Started
+2018-01-23 00:18:09,701 Main PyQt window started
+2018-01-23 00:20:56,118 Application Started
+2018-01-23 00:21:01,516 Main PyQt window started
+2018-01-23 01:24:36,632 Application Started
+2018-01-23 01:24:42,075 Main PyQt window started
+2018-01-23 01:43:47,351 Application Started
+2018-01-23 01:43:52,848 Main PyQt window started
+2018-01-23 01:43:52,848 Manual reading of RFID Tag: [UID] 10, [Data] 20
+2018-01-23 01:44:36,575 Application Started
+2018-01-23 01:44:42,019 Main PyQt window started
+2018-01-23 01:44:42,019 Manual reading of RFID Tag: [UID] 123234234345345345435, [Data] 20
+2018-01-23 01:51:26,812 Application Started
+2018-01-23 01:51:32,154 Main PyQt window started
+2018-01-23 02:03:41,190 Application Started
+2018-01-23 02:03:46,673 Main PyQt window started
+2018-01-23 02:04:17,944 Application Started
+2018-01-23 02:04:23,321 Main PyQt window started
+2018-01-23 02:05:19,961 Application Started
+2018-01-23 02:05:25,282 Main PyQt window started
+2018-01-23 02:07:30,543 Application Started
+2018-01-23 02:07:35,877 Main PyQt window started
+2018-01-23 02:08:25,766 Application Started
+2018-01-23 02:08:31,150 Main PyQt window started
