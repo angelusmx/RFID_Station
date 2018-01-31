@@ -6,7 +6,6 @@ import threading
 import RFH630_commands
 from time import gmtime, strftime
 import logging
-from PyQt4.QtCore import *
 
 # The UI file is in the same folder as the project
 qtCreatorFile = "mainwindow_V4.ui"
@@ -17,6 +16,7 @@ data_matrix_q = Queue.Queue()
 read_request_q = Queue.Queue()
 automatic_queue = Queue.Queue()
 manual_queue = Queue.Queue()
+comms_queue = Queue.Queue()
 
 # Initial parameters for the logging
 logging.basicConfig(filename='RFID_Station_log.log', level=logging.INFO, format='%(asctime)s %(message)s')
@@ -24,7 +24,7 @@ logging.basicConfig(filename='RFID_Station_log.log', level=logging.INFO, format=
 
 # TCP Server that uses individual threads for the different clients
 class ThreadedServer(threading.Thread):
-    def __init__(self, host, port, auto_q, manual_q, datamatrix_q, read_req_q):
+    def __init__(self, host, port, auto_q, manual_q, datamatrix_q, read_req_q, comms_q):
         super(ThreadedServer, self).__init__()
         try:
             self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -35,10 +35,11 @@ class ThreadedServer(threading.Thread):
             self.manual_q = manual_q
             self.datamatrix_q = datamatrix_q
             self.read_req_q = read_req_q
+            self.comms_q = comms_q
             self.stop_request = threading.Event()
             self.clients_count = 0
-            self.rfid_client = client_rfid
-            self.scanner_client = client_2D_scanner
+            self.rfid_client = ClientRFID
+            self.scanner_client = ClientScanner
             self.auto_trigger = False
 
         # TODO: Place the right error after the socket
@@ -53,13 +54,15 @@ class ThreadedServer(threading.Thread):
         while not self.stop_request.isSet():
             conn, address = self.s.accept()
             if address[0] == '10.100.25.65':
-                self.rfid_client = client_rfid(conn, self.auto_q, self.manual_q, self.datamatrix_q, self.read_req_q)
+                self.rfid_client = ClientRFID(conn, self.auto_q, self.manual_q, self.datamatrix_q, self.read_req_q,
+                                               self.comms_q)
                 self.clients.append(self.rfid_client)
                 print '[+] Client connected: {0}'.format(address[0])
                 self.clients_count += 1
 
             if address[0] == '10.100.25.64':
-                self.scanner_client = client_2D_scanner(conn, self.auto_q, self.manual_q, self.datamatrix_q, self.read_req_q)
+                self.scanner_client = ClientScanner(conn, self.auto_q, self.manual_q, self.datamatrix_q,
+                                                        self.read_req_q, self.comms_q)
                 self.clients.append(self.scanner_client)
                 print '[+] Client connected: {0}'.format(address[0])
                 self.clients_count += 1
@@ -74,15 +77,16 @@ class ThreadedServer(threading.Thread):
         super(ThreadedServer, self).join(timeout)
 
 
-class client_rfid(threading.Thread):
-    def __init__(self, conn, automatic_q, manual_q, datamatrix_q, read_req_q):
-        super(client_rfid, self).__init__()
+class ClientRFID(threading.Thread):
+    def __init__(self, conn, automatic_q, manual_q, datamatrix_q, read_req_q, comms_q):
+        super(ClientRFID, self).__init__()
         self.conn = conn
         self.data = ""
         self.automatic_q = automatic_q
         self.manual_q = manual_q
         self.data_matrix_q = datamatrix_q
         self.read_request_q = read_req_q
+        self.comms_q = comms_q
         self.tags_list = []
         self.stop_request = threading.Event()
 
@@ -93,13 +97,12 @@ class client_rfid(threading.Thread):
             job_enquiry = self.automatic_q.get()
             if job_enquiry == 1:
                 self.write_rfid(self.read_request_q, self.data_matrix_q)
-                #time.sleep(1)
             else:
                 print "No task request found in the queue"
 
     def join(self, timeout=2):
         self.stop_request.set()
-        super(client_rfid, self).join(2)
+        super(ClientRFID, self).join(2)
 
     def list_tags(self, tag_uid):
         # Check if the numbers of elements is >= 1000
@@ -199,7 +202,7 @@ class client_rfid(threading.Thread):
         complete_UID = self.extract_uid(tag_uid)
 
         # Check the uniqueness of the Tag
-        #tag_is_unique = self.check_unique(complete_UID)
+        # tag_is_unique = self.check_unique(complete_UID)
         tag_is_unique = True
 
         # Only one Tag was found in the HF Field
@@ -207,8 +210,11 @@ class client_rfid(threading.Thread):
         # TODO: Error handling if no valid scanner Result
         if complete_UID != "No Tag" and tag_is_unique:
 
-            print "Tag detected with UID: " + complete_UID
+            # Log the event and write to the console
+            info_tag_detected = "Tag detected with UID: " + complete_UID
+            self.comms_q.put(info_tag_detected)
             logging.info("Tag detected with UID: " + complete_UID)
+
             # Place the read request in the Queue
             read_request = 1
             read_q.put(read_request)
@@ -216,7 +222,9 @@ class client_rfid(threading.Thread):
             try:
                 # Pull the Data matrix from the Queue
                 data_matrix_result = data_m_q.get()
-                print "The scanned data is: " + str(data_matrix_result)
+                info_scanned_data = "The scanned data is: " + str(data_matrix_result)
+                # Output event to console
+                self.comms_q.put(info_scanned_data)
 
                 # create the complete command for transmission
                 transmission_command = RFH630_commands.write_custom_string(complete_UID, data_matrix_result)
@@ -230,8 +238,10 @@ class client_rfid(threading.Thread):
                     print "*** Writing process returned no errors ****\n"
                     # Enter the tag into the list
                     self.list_tags(complete_UID)
-                    # Entry in the log file
-                    logging.info("Tag %s written with scanner data %s", complete_UID, data_matrix_result)
+                    # Entry in log and output to console
+                    info_write_success = "Tag %s written with scanner data %s " + str(complete_UID) + " " + str(data_matrix_result)
+                    logging.info(info_write_success)
+                    self.comms_q.put(info_write_success)
                 else:
                     print "\n" + "++++ Tag could not be written"
 
@@ -246,15 +256,16 @@ class client_rfid(threading.Thread):
         self.conn.close()
 
 
-class client_2D_scanner(threading.Thread):
-    def __init__(self, conn, automatic_q, manual_q, datamatrix_q, read_req_q):
-        super(client_2D_scanner, self).__init__()
+class ClientScanner(threading.Thread):
+    def __init__(self, conn, automatic_q, manual_q, datamatrix_q, read_req_q, comms_q):
+        super(ClientScanner, self).__init__()
         self.conn = conn
         self.data = ""
         self.automatic_q = automatic_q
         self.manual_q = manual_q
         self.data_matrix_q = datamatrix_q
         self.read_request_q = read_req_q
+        self.comms_q = comms_q
         self.stop_request = threading.Event()
         self.buffer_size = 512
 
@@ -272,7 +283,7 @@ class client_2D_scanner(threading.Thread):
 
     def join(self, timeout=None):
         self.stop_request.set()
-        super(client_2D_scanner, self).join(timeout)
+        super(ClientScanner, self).join(timeout)
 
     def read(self):
         size = 512
