@@ -9,7 +9,7 @@ import logging
 from PyQt4.QtCore import *
 
 # The UI file is in the same folder as the project
-qtCreatorFile = "mainwindow_V1.ui"
+qtCreatorFile = "mainwindow_V4.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 # Create a single input and a single output queue for all threads.
