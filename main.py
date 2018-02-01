@@ -44,7 +44,11 @@ class ThreadedServer(threading.Thread):
 
         # TODO: Place the right error after the socket
         except socket.error:
-            print 'Failed to create socket'
+            # Log to file and output to console
+            info_error_socket = 'Failed to create socket'
+            self.comms_q.put(info_error_socket)
+            logging.info(info_error_socket)
+
             sys.exit()
         self.clients = []
 
@@ -57,20 +61,31 @@ class ThreadedServer(threading.Thread):
                 self.rfid_client = ClientRFID(conn, self.auto_q, self.manual_q, self.datamatrix_q, self.read_req_q,
                                                self.comms_q)
                 self.clients.append(self.rfid_client)
-                print '[+] Client connected: {0}'.format(address[0])
+                info_rfid_connected = '[+] Client connected: {0}'.format(address[0])
+                print info_rfid_connected
+                # Entry in log und output to console
+                logging.info(info_rfid_connected)
+                self.comms_q.put(info_rfid_connected)
                 self.clients_count += 1
 
             if address[0] == '10.100.25.64':
                 self.scanner_client = ClientScanner(conn, self.auto_q, self.manual_q, self.datamatrix_q,
                                                         self.read_req_q, self.comms_q)
                 self.clients.append(self.scanner_client)
-                print '[+] Client connected: {0}'.format(address[0])
+                info_scanner_connected = '[+] Client connected: {0}'.format(address[0])
+                print info_scanner_connected
+                # Entry in log und output to console
+                logging.info(info_scanner_connected)
+                self.comms_q.put(info_scanner_connected)
                 self.clients_count += 1
 
             if self.clients_count == 2:
                 self.rfid_client.start()
                 self.scanner_client.start()
-                print "*** All clients connected ***"
+                # Enter in log and output to console
+                info_all_connected = " ** All clients connected **"
+                logging.info(info_all_connected)
+                self.comms_q.put(info_all_connected)
 
     def join(self, timeout=None):
         self.stop_request.set()
@@ -106,7 +121,6 @@ class ClientRFID(threading.Thread):
 
     def list_tags(self, tag_uid):
         # Check if the numbers of elements is >= 1000
-
         if len(self.tags_list) >= 1000:
             # Reset the list
             del self.tags_list[:]
@@ -121,21 +135,18 @@ class ClientRFID(threading.Thread):
             return list_entry_ready
 
     def check_unique(self, tag_uid):
-
         # variable to communicate the status of the tag [0] = new [1] =  duplicated
         response = False
 
-        if self.tags_list.__len__() == 0:
+        if not self.tags_list:  # Pythonic way of checking if the list is empty
             response = True
             return response
-
         else:
-
             for element in self.tags_list:
                 if tag_uid == element:
                     print "Duplicated UID, it will be ignored"
                     response = False
-                    continue
+                    break
                 else:
                     print "UID is unique to the station"
                     response = True
@@ -175,7 +186,7 @@ class ClientRFID(threading.Thread):
         complete_UID = RFH630_commands.extract_uid(tag_uid)
 
         # Read the content of the blocks (from - to of blocks is hard coded)
-        print "sending the read command"
+
         # create the complete command for transmission
         first_block = 0
         final_block = 5
@@ -192,14 +203,16 @@ class ClientRFID(threading.Thread):
     def write_rfid(self, read_q, data_m_q):
         size = 512
 
+        IO_counter = 0
+
         # Send the inventory request
         self.conn.sendall(RFH630_commands.get_UID)
-
         # expect something in return
         tag_uid = self.conn.recv(size)
 
         # extract the UID from the response of the device
         complete_UID = self.extract_uid(tag_uid)
+        # TODO: if the reponse is Error, give out an error and break the cycle
 
         # Check the uniqueness of the Tag
         # tag_is_unique = self.check_unique(complete_UID)
@@ -236,10 +249,13 @@ class ClientRFID(threading.Thread):
 
                 if write_confirmation == "\x02sAN WrtMltBlckStr 0\x03":
                     print "*** Writing process returned no errors ****\n"
+                    IO_counter += 1
+                    print "IO Tags = " + str(IO_counter)
                     # Enter the tag into the list
                     self.list_tags(complete_UID)
                     # Entry in log and output to console
-                    info_write_success = "Tag %s written with scanner data %s " + str(complete_UID) + " " + str(data_matrix_result)
+                    info_write_success = "Tag " + str(complete_UID) + " written with scanner data " \
+                                                + str(data_matrix_result) +"\n"
                     logging.info(info_write_success)
                     self.comms_q.put(info_write_success)
                 else:
@@ -250,7 +266,8 @@ class ClientRFID(threading.Thread):
                 self.close()
 
         else:
-            print "No Tag detected, keep waiting"
+            info_no_tag_detected = "No Tag detected, keep waiting"
+            self.comms_q.put(info_no_tag_detected)
 
     def close(self):
         self.conn.close()
@@ -270,7 +287,7 @@ class ClientScanner(threading.Thread):
         self.buffer_size = 512
 
     def run(self):
-        print "the 2D Scanner handling service started"
+        # print "the 2D Scanner handling service started"
         while not self.stop_request.isSet():
             try:
                 self.read_request_q.get()
@@ -287,12 +304,16 @@ class ClientScanner(threading.Thread):
 
     def read(self):
         size = 512
-        try:
-            self.conn.sendall("\x02read\x03")
-            data_matrix = self.conn.recv(size)
-        except data_matrix == "NoRead":
-            print "Not possible to read Data from the label"
-        finally:
+        self.conn.sendall("\x02read\x03")
+        data_matrix = self.conn.recv(size)
+        if data_matrix != "NoRead":
+            self.comms_q.put(data_matrix)
+            return data_matrix
+        else:
+            info_no_datamatrix = "No Datamatrix could be read"
+            # Entry in Log und output to console
+            self.comms_q.put(info_no_datamatrix)
+            logging.info(info_no_datamatrix)
             return data_matrix
 
     def close(self):
@@ -300,7 +321,7 @@ class ClientScanner(threading.Thread):
 
 
 class MyApp(QtGui.QMainWindow, Ui_MainWindow):
-    def __init__(self, automatic_queue, manual_queue, data_matrix_q, read_request_q, client_rfid, client_reader):
+    def __init__(self, automatic_queue, manual_queue, data_matrix_q, read_request_q, client_rfid, client_reader, comms_q):
         QtGui.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
@@ -311,6 +332,13 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.timeoutTimer.setInterval(self.delay_time)  # The time on the slider in s
         self.timeoutTimer.setSingleShot(False)
         self.timeoutTimer.timeout.connect(self.recursive_timer)
+
+        # The recursive timer for the message queue
+        self.pull_frequency = 500
+        self.refresh_timer = QtCore.QTimer()
+        self.refresh_timer.setInterval(self.pull_frequency)
+        self.refresh_timer.setSingleShot(False)
+        self.refresh_timer.timeout.connect(self.pull_messages)
 
         # The client objects
         self.client_rfid = client_rfid
@@ -329,12 +357,24 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.manual_queue = manual_queue
         self.data_matrix_q = data_matrix_q
         self.read_request_q = read_request_q
+        self.comms_q = comms_q
 
     def recursive_timer(self):
         # Executes this code every n seconds (as given by the slider)
         self.automatic_queue.put(1)
 
+    def pull_messages(self):
+        # Pulls messages from the message queue and forwards them to the console of the GUI
+        while not self.comms_q.empty():
+            # Forward to the console
+            message = self.comms_q.get()
+            self.console_output(message)
+        else:
+            pass
+
     def closeEvent(self, event):
+        # Entry in logfile
+        logging.info('Application terminated')
         # Terminate the communications to clients
         self.client_rfid.close()
         self.client_reader.close()
@@ -347,12 +387,12 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 
     def slider_valuechange(self):
         self.delay_time = self.speed_slider.value() * 1000
-        print self.delay_time
 
     def console_output(self, input_text):
         # Write text to the console
         current_time = strftime("%H:%M:%S", gmtime())
         self.txt_console.append(input_text + "-" + current_time)
+        self.txt_console.append("\n")
 
     def auto_start(self):
         self.automatic_trigger = True
@@ -409,8 +449,6 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         if self.automatic_trigger:
             lots_of_jobs = 1000
             for i in range(1, lots_of_jobs, 1):
-                #self.automatic_queue.put(1)
-                #QtCore.QCoreApplication.processEvents()
                 self.timeoutTimer.start()
 
         else:
@@ -424,17 +462,20 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 port_num = 2113
 app = QtGui.QApplication(sys.argv)
 # Instantiate the server class and start listening for clients
-tcp_server = ThreadedServer('', port_num, automatic_queue, manual_queue, data_matrix_q, read_request_q)
+tcp_server = ThreadedServer('', port_num, automatic_queue, manual_queue, data_matrix_q, read_request_q, comms_queue)
 tcp_server.start()
 
 while tcp_server.clients_count != 2:
     continue
 
-w = MyApp(automatic_queue, manual_queue, data_matrix_q, read_request_q, tcp_server.rfid_client, tcp_server.scanner_client)
+w = MyApp(automatic_queue, manual_queue, data_matrix_q, read_request_q, tcp_server.rfid_client, tcp_server.scanner_client, comms_queue)
 
 w.setWindowTitle('RFID Labels Station V1.0')
 w.show()
 logging.info('Main PyQt window started')
+
+# Start the recursive pull for the console messages
+w.refresh_timer.start()
 
 # Set the color of the idle button
 w.btn_status_idle.setStyleSheet("background-color: yellow")
