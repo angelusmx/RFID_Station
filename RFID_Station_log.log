@@ -2530,3 +2530,287 @@ INFO:root:Main PyQt window started
 2018-02-02 15:44:00,963 Tag E0040150812D6923 written with scanner data 123456789020123100001
 
 2018-02-02 15:46:21,017 Application terminated
+2018-02-02 16:48:42,190 Application Started
+2018-02-02 16:49:18,865 Application Started
+2018-02-02 16:50:02,782 Application Started
+2018-02-02 16:50:04,357 [+] Client connected: 10.100.25.64
+2018-02-02 16:50:06,759 [+] Client connected: 10.100.25.65
+2018-02-02 16:50:06,759  ** All clients connected **
+2018-02-02 16:50:06,884 Main PyQt window started
+2018-02-02 16:50:29,973 Tag detected with UID: E0-04-01-50-81-2D-67-F5
+2018-02-02 16:50:35,782 Application terminated
+2018-02-02 16:51:36,994 Application Started
+2018-02-02 16:51:38,789 [+] Client connected: 10.100.25.64
+2018-02-02 16:51:41,253 [+] Client connected: 10.100.25.65
+2018-02-02 16:51:41,253  ** All clients connected **
+2018-02-02 16:51:41,346 Main PyQt window started
+2018-02-02 16:51:46,947 Tag detected with UID: E0-04-01-50-81-2D-67-F5
+2018-02-02 16:52:02,125 Application terminated
+2018-02-02 16:54:14,966 Application Started
+2018-02-02 16:54:17,118 [+] Client connected: 10.100.25.64
+2018-02-02 16:54:17,259 [+] Client connected: 10.100.25.65
+2018-02-02 16:54:17,289  ** All clients connected **
+2018-02-02 16:54:17,321 Main PyQt window started
+2018-02-02 16:54:32,359 Application Started
+2018-02-02 16:54:33,374 [+] Client connected: 10.100.25.64
+2018-02-02 16:54:36,759 [+] Client connected: 10.100.25.65
+2018-02-02 16:54:36,759  ** All clients connected **
+2018-02-02 16:54:36,821 Main PyQt window started
+2018-02-02 16:54:48,381 Tag detected with UID: E0-04-01-50-81-2D-67-F5
+2018-02-02 16:54:56,088 Application terminated
+2018-02-02 16:55:27,743 Application Started
+2018-02-02 16:55:29,099 [+] Client connected: 10.100.25.64
+2018-02-02 16:55:31,253 [+] Client connected: 10.100.25.65
+2018-02-02 16:55:31,253  ** All clients connected **
+2018-02-02 16:55:31,299 Main PyQt window started
+2018-02-02 16:55:40,674 Tag detected with UID: E0-04-01-50-81-2D-67-F5
+2018-02-02 16:55:58,460 Tag detected with UID: E0-04-01-50-81-2D-67-F5
+2018-02-02 16:56:11,517 No Datamatrix could be read
+2018-02-02 16:56:12,625 Application terminated
+2018-02-02 16:58:29,303 Application Started
+2018-02-02 16:58:30,630 [+] Client connected: 10.100.25.64
+2018-02-02 16:58:32,750 [+] Client connected: 10.100.25.65
+2018-02-02 16:58:32,750  ** All clients connected **
+2018-02-02 16:58:32,845 Main PyQt window started
+2018-02-02 16:58:44,950 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-67-F5, [Data] sAN RdMltBlckStr 0 18 NoRead                  
+2018-02-02 17:00:28,104 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-67-FE, [Data] sAN RdMltBlckStr 0 18 123456789020123100001   
+2018-02-02 17:00:38,619 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-67-FE, [Data] sAN RdMltBlckStr 0 18 123456789020123100001   
+2018-02-02 17:00:43,878 No Datamatrix could be read
+2018-02-02 17:00:48,605 No Datamatrix could be read
+2018-02-02 17:01:03,380 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-67-FE, [Data] sAN RdMltBlckStr 0 18 123456789020123100001   
+2018-02-02 17:01:14,112 Application terminated
+2018-02-02 17:01:49,994 Application Started
+2018-02-02 17:01:50,104 [+] Client connected: 10.100.25.64
+2018-02-02 17:01:54,253 [+] Client connected: 10.100.25.65
+2018-02-02 17:01:54,253  ** All clients connected **
+2018-02-02 17:01:54,299 Main PyQt window started
+2018-02-02 17:03:05,147 Application Started
+2018-02-02 17:03:06,785 [+] Client connected: 10.100.25.64
+2018-02-02 17:03:09,252 [+] Client connected: 10.100.25.65
+2018-02-02 17:03:09,252  ** All clients connected **
+2018-02-02 17:03:09,313 Main PyQt window started
+2018-02-02 17:03:13,213 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-67-FE, [Data]  123456789020123100001   
+2018-02-02 17:03:35,724 Application terminated
+2018-02-02 17:06:34,246 Application Started
+2018-02-02 17:06:34,323 Application Started
+2018-02-02 17:06:35,727 [+] Client connected: 10.100.25.64
+2018-02-02 17:06:36,243 [+] Client connected: 10.100.25.65
+2018-02-02 17:06:36,243  ** All clients connected **
+2018-02-02 17:06:36,305 Main PyQt window started
+2018-02-02 17:06:46,118 No Datamatrix could be read
+2018-02-02 17:06:48,193 No Datamatrix could be read
+2018-02-02 17:06:50,266 No Datamatrix could be read
+2018-02-02 17:06:52,342 No Datamatrix could be read
+2018-02-02 17:06:59,486 No Datamatrix could be read
+2018-02-02 17:07:06,631 No Datamatrix could be read
+2018-02-02 17:07:09,688 No Datamatrix could be read
+2018-02-02 17:07:11,749 No Datamatrix could be read
+2018-02-02 17:07:13,808 No Datamatrix could be read
+2018-02-02 17:07:15,867 No Datamatrix could be read
+2018-02-02 17:07:17,926 No Datamatrix could be read
+2018-02-02 17:07:22,996 No Datamatrix could be read
+2018-02-02 17:07:26,398 No Datamatrix could be read
+2018-02-02 17:07:29,035 No Datamatrix could be read
+2018-02-02 17:07:31,125 No Datamatrix could be read
+2018-02-02 17:07:33,668 No Datamatrix could be read
+2018-02-02 17:07:38,161 No Datamatrix could be read
+2018-02-02 17:07:41,530 No Datamatrix could be read
+2018-02-02 17:07:44,915 No Datamatrix could be read
+2018-02-02 17:07:46,974 No Datamatrix could be read
+2018-02-02 17:07:52,127 No Datamatrix could be read
+2018-02-02 17:07:53,322 Application terminated
+2018-02-02 17:07:53,756 [+] Client connected: 10.100.25.65
+2018-02-02 17:07:57,270 Application Started
+2018-02-02 17:07:59,339 [+] Client connected: 10.100.25.64
+2018-02-02 17:08:00,778 [+] Client connected: 10.100.25.65
+2018-02-02 17:08:00,819  ** All clients connected **
+2018-02-02 17:08:00,926 Main PyQt window started
+2018-02-02 17:08:07,441 No Datamatrix could be read
+2018-02-02 17:08:11,757 Application terminated
+2018-02-02 17:09:39,484 Application Started
+2018-02-02 17:09:41,763 [+] Client connected: 10.100.25.64
+2018-02-02 17:09:42,263 [+] Client connected: 10.100.25.65
+2018-02-02 17:09:42,272  ** All clients connected **
+2018-02-02 17:09:42,638 Main PyQt window started
+2018-02-02 17:09:47,983 No Datamatrix could be read
+2018-02-02 17:10:11,711 No Datamatrix could be read
+2018-02-02 17:10:19,065 Application terminated
+2018-02-02 17:14:38,108 Application Started
+2018-02-02 17:14:39,263 [+] Client connected: 10.100.25.65
+2018-02-02 17:14:40,059 [+] Client connected: 10.100.25.64
+2018-02-02 17:14:40,059  ** All clients connected **
+2018-02-02 17:14:40,262 Main PyQt window started
+2018-02-02 17:14:49,948 No Datamatrix could be read
+2018-02-02 17:15:00,201 No Datamatrix could be read
+2018-02-02 17:15:18,048 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:18,312 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:18,562 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:18,828 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:19,078 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:19,342 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:19,592 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:19,858 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:20,107 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:20,372 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:20,607 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:20,871 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:21,121 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:21,387 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:21,621 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:22,010 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:22,134 Tag detected with UID: E0-04-01-50-81-2D-64-6B
+2018-02-02 17:15:22,852 Tag E0040150812D646B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:22,884 Tag detected with UID: E0-04-01-50-81-2D-64-6B
+2018-02-02 17:15:23,134 Tag E0040150812D646B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:23,164 Tag detected with UID: E0-04-01-50-81-2D-64-6B
+2018-02-02 17:15:23,430 Tag E0040150812D646B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:23,680 Tag detected with UID: E0-04-01-50-81-2D-64-6B
+2018-02-02 17:15:23,976 Tag E0040150812D646B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:24,194 Tag detected with UID: E0-04-01-50-81-2D-64-6B
+2018-02-02 17:15:24,460 Tag E0040150812D646B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:24,709 Tag detected with UID: E0-04-01-50-81-2D-64-6B
+2018-02-02 17:15:24,974 Tag E0040150812D646B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:25,209 Tag detected with UID: E0-04-01-50-81-2D-64-6B
+2018-02-02 17:15:25,473 Tag E0040150812D646B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:25,723 Tag detected with UID: E0-04-01-50-81-2D-64-6B
+2018-02-02 17:15:25,989 Tag E0040150812D646B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:26,237 Tag detected with UID: E0-04-01-50-81-2D-64-6B
+2018-02-02 17:15:26,628 Tag E0040150812D646B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:26,753 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:27,033 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:27,267 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:27,532 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:27,782 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:28,048 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:28,296 Tag detected with UID: E0-04-01-50-81-2D-6A-5B
+2018-02-02 17:15:28,578 Tag E0040150812D6A5B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:30,059 Tag detected with UID: E0-04-01-50-81-2D-65-9B
+2018-02-02 17:15:30,325 Tag E0040150812D659B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:30,357 Tag detected with UID: E0-04-01-50-81-2D-65-9B
+2018-02-02 17:15:30,605 Tag E0040150812D659B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:30,825 Tag detected with UID: E0-04-01-50-81-2D-65-9B
+2018-02-02 17:15:31,105 Tag E0040150812D659B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:31,450 Tag detected with UID: E0-04-01-50-81-2D-65-9B
+2018-02-02 17:15:46,378 Tag detected with UID: E0-04-01-50-81-2D-65-9B
+2018-02-02 17:15:46,644 Tag E0040150812D659B written with scanner data 123456789020123100001
+
+2018-02-02 17:15:47,190 Tag detected with UID: E0-04-01-50-81-2D-69-2C
+2018-02-02 17:15:47,440 Tag E0040150812D692C written with scanner data 123456789020123100001
+
+2018-02-02 17:15:47,891 Tag detected with UID: E0-04-01-50-81-2D-69-2C
+2018-02-02 17:15:48,203 Tag E0040150812D692C written with scanner data 123456789020123100001
+
+2018-02-02 17:15:49,904 Tag detected with UID: E0-04-01-50-81-2D-69-2C
+2018-02-02 17:15:50,730 Tag E0040150812D692C written with scanner data 123456789020123100001
+
+2018-02-02 17:15:51,917 Tag detected with UID: E0-04-01-50-81-2D-60-B8
+2018-02-02 17:15:52,181 Tag E0040150812D60B8 written with scanner data 123456789020123100001
+
+2018-02-02 17:15:53,928 Tag detected with UID: E0-04-01-50-81-2D-60-B8
+2018-02-02 17:15:54,194 Tag E0040150812D60B8 written with scanner data 123456789020123100001
+
+2018-02-02 17:15:55,941 Tag detected with UID: E0-04-01-50-81-2D-5F-6F
+2018-02-02 17:15:56,207 Tag E0040150812D5F6F written with scanner data 123456789020123100001
+
+2018-02-02 17:15:57,953 Tag detected with UID: E0-04-01-50-81-2D-5F-7A
+2018-02-02 17:15:58,219 Tag E0040150812D5F7A written with scanner data 123456789020123100001
+
+2018-02-02 17:15:59,966 Tag detected with UID: E0-04-01-50-81-2D-5F-7A
+2018-02-02 17:16:00,232 Tag E0040150812D5F7A written with scanner data 123456789020123100001
+
+2018-02-02 17:16:07,813 Tag detected with UID: E0-04-01-50-81-2D-67-FE
+2018-02-02 17:16:08,063 Tag E0040150812D67FE written with scanner data 123456789020123100001
+
+2018-02-02 17:16:08,095 Tag detected with UID: E0-04-01-50-81-2D-67-FE
+2018-02-02 17:16:08,345 Tag E0040150812D67FE written with scanner data 123456789020123100001
+
+2018-02-02 17:16:10,029 Tag detected with UID: E0-04-01-50-81-2D-67-FE
+2018-02-02 17:16:10,295 Tag E0040150812D67FE written with scanner data 123456789020123100001
+
+2018-02-02 17:16:14,819 Tag detected with UID: E0-04-01-50-81-2D-63-2E
+2018-02-02 17:16:15,068 Tag E0040150812D632E written with scanner data 123456789020123100001
+
+2018-02-02 17:16:15,098 Tag detected with UID: E0-04-01-50-81-2D-63-2E
+2018-02-02 17:16:15,365 Tag E0040150812D632E written with scanner data 123456789020123100001
+
+2018-02-02 17:16:16,066 Tag detected with UID: E0-04-01-50-81-2D-63-2E
+2018-02-02 17:16:16,346 Tag E0040150812D632E written with scanner data 123456789020123100001
+
+2018-02-02 17:16:25,614 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-02 17:16:25,862 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-02 17:16:25,894 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-02 17:16:26,160 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-02 17:16:26,190 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-02 17:16:26,440 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-02 17:16:28,141 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-02 17:16:28,405 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-02 17:16:30,153 Tag detected with UID: E0-04-01-50-81-2D-63-2E
+2018-02-02 17:16:30,667 Tag E0040150812D632E written with scanner data 123456789020123100001
+
+2018-02-02 17:16:32,165 Tag detected with UID: E0-04-01-50-81-2D-69-2C
+2018-02-02 17:16:32,430 Tag E0040150812D692C written with scanner data 123456789020123100001
+
+2018-02-02 17:16:34,177 Tag detected with UID: E0-04-01-50-81-2D-69-2C
+2018-02-02 17:16:34,443 Tag E0040150812D692C written with scanner data 123456789020123100001
+
+2018-02-02 17:16:36,190 Tag detected with UID: E0-04-01-50-81-2D-69-2C
+2018-02-02 17:16:36,457 Tag E0040150812D692C written with scanner data 123456789020123100001
+
+2018-02-02 17:16:38,204 Tag detected with UID: E0-04-01-50-81-2D-65-9B
+2018-02-02 17:16:50,122 Tag detected with UID: E0-04-01-50-81-2D-65-9B
+2018-02-02 17:16:58,453 Tag detected with UID: E0-04-01-50-81-2D-65-9B
+2018-02-02 17:17:04,663 Tag detected with UID: E0-04-01-50-81-2D-65-9B
+2018-02-02 17:17:09,703 Tag detected with UID: E0-04-01-50-81-2D-69-2C
+2018-02-02 17:17:09,953 Tag E0040150812D692C written with scanner data 123456789020123100001
+
+2018-02-02 17:17:11,700 Tag detected with UID: E0-04-01-50-81-2D-69-2C
+2018-02-02 17:17:11,966 Tag E0040150812D692C written with scanner data 123456789020123100001
+
+2018-02-02 17:17:13,713 Tag detected with UID: E0-04-01-50-81-2D-69-2C
+2018-02-02 17:17:13,977 Tag E0040150812D692C written with scanner data 123456789020123100001
+
+2018-02-02 17:17:18,158 Tag detected with UID: E0-04-01-50-81-2D-60-B8
+2018-02-02 17:17:25,927 Tag detected with UID: E0-04-01-50-81-2D-5F-6F
+2018-02-02 17:17:29,999 Tag detected with UID: E0-04-01-50-81-2D-5F-6F
+2018-02-02 17:17:30,279 Tag E0040150812D5F6F written with scanner data 123456789020123100001
+
+2018-02-02 17:17:32,012 Tag detected with UID: E0-04-01-50-81-2D-5F-6F
+2018-02-02 17:17:32,292 Tag E0040150812D5F6F written with scanner data 123456789020123100001
+
+2018-02-02 17:17:35,568 Tag detected with UID: E0-04-01-50-81-2D-5F-7A
+2018-02-02 17:17:35,834 Tag E0040150812D5F7A written with scanner data 123456789020123100001
+
+2018-02-02 17:17:36,036 Tag detected with UID: E0-04-01-50-81-2D-5F-7A
+2018-02-02 17:17:36,302 Tag E0040150812D5F7A written with scanner data 123456789020123100001
+
+2018-02-02 17:17:38,049 Tag detected with UID: E0-04-01-50-81-2D-5F-7A
+2018-02-02 17:18:00,217 Application terminated
+2018-02-02 17:18:00,250 [+] Client connected: 10.100.25.65

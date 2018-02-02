@@ -162,14 +162,13 @@ class ClientRFID(threading.Thread):
         # Buffer size
         size = 512
 
-        # Send the inventory request
-        self.conn.sendall(RFH630_commands.get_UID)
-
+        # Get the UID automatically from the device
+        self.conn.sendall(RFH630_commands.get_UID_auto)
         # expect something in return
         tag_uid = self.conn.recv(size)
 
         # extract the UID from the response of the device
-        complete_UID = RFH630_commands.extract_uid(tag_uid)
+        raw_uid, pretty_uid, spaces_uid = RFH630_commands.extract_uid(tag_uid)
 
         # Read the content of the blocks (from - to of blocks is hard coded)
 
@@ -177,14 +176,15 @@ class ClientRFID(threading.Thread):
         first_block = 0
         final_block = 5
 
-        read_command = RFH630_commands.read_blocks(complete_UID, first_block, final_block)
+        read_command = RFH630_commands.read_blocks(spaces_uid, first_block, final_block)
 
         self.conn.sendall(read_command)
 
         # Expect something in return
         tag_content = self.conn.recv(size)
+        tag_content = tag_content[22:]
 
-        return complete_UID, tag_content
+        return pretty_uid, tag_content
 
     def write_rfid(self, read_q, data_m_q):
         size = 512
@@ -390,8 +390,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         super(QtGui.QMainWindow, self).closeEvent(event)
 
     def slider_valuechange(self):
-        #self.delay_time = self.speed_slider.value() * 1000
-        pass
+        self.delay_time = self.speed_slider.value() * 1000
+        # pass
 
     def console_output(self, input_text):
         # Write text to the console
@@ -412,6 +412,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         # Change the colors of the status buttons
         self.btn_status_run.setStyleSheet("background-color: green")
         self.btn_status_idle.setStyleSheet("background-color: None")
+        self.btn_auto_stop.setStyleSheet("background-color: Red")
+        self.btn_auto_start.setStyleSheet("background-color: None")
         self.console_output("Automatisches Prozess gestarted")
         # Give the RFID worker the first job, the rest ones are given sequentially by the recursive timer
         self.automatic_queue.put(1)
@@ -428,18 +430,25 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         # Change the colors of the buttons
         self.btn_status_run.setStyleSheet("background-color: None")
         self.btn_status_idle.setStyleSheet("background-color: yellow")
+        self.btn_auto_stop.setStyleSheet("background-color: None")
+        self.btn_auto_start.setStyleSheet("background-color: Green")
         self.console_output("Automatisches Prozess wurde angehalten")
         # QtGui.QApplication.processEvents()
 
     def man_datamatrix(self):
         self.console_output("Information auf die Datamatrix wird ausgelesen")
         datamatrix = self.client_reader.read()
-        lot_number = datamatrix[0:10]
-        year_of_man = datamatrix[10:12]
-        month_of_man = datamatrix[12:14]
-        day_of_man = datamatrix[14:16]
-        dom_complete = "20" + str(year_of_man) + "-" + str(month_of_man) + "-" + str(day_of_man)
-        counter_num = datamatrix[16:21]
+        if datamatrix!= "NoRead":
+            lot_number = datamatrix[0:10]
+            year_of_man = datamatrix[10:12]
+            month_of_man = datamatrix[12:14]
+            day_of_man = datamatrix[14:16]
+            dom_complete = "20" + str(year_of_man) + "-" + str(month_of_man) + "-" + str(day_of_man)
+            counter_num = datamatrix[16:21]
+        else:
+            lot_number = "Keine Daten"
+            dom_complete = "Keine Daten"
+            counter_num = "Keine Daten"
 
         self.txt_lot.setText(lot_number)
         self.txt_counter.setText(counter_num)
@@ -484,7 +493,8 @@ logging.info('Main PyQt window started')
 # Start the recursive pull for the console messages
 w.refresh_timer.start()
 
-# Set the color of the idle button
+# Set the color of the idle button and the auto start
 w.btn_status_idle.setStyleSheet("background-color: yellow")
+w.btn_auto_start.setStyleSheet("background-color: Green")
 
 sys.exit(app.exec_())
