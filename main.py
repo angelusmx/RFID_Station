@@ -6,7 +6,6 @@ import threading
 import RFH630_commands
 from time import gmtime, strftime
 import logging
-import time
 
 # The UI file is in the same folder as the project
 qtCreatorFile = "mainwindow_V4.ui"
@@ -18,6 +17,7 @@ read_request_q = Queue.Queue()
 automatic_queue = Queue.Queue()
 manual_queue = Queue.Queue()
 comms_queue = Queue.Queue()
+status_queue = Queue.Queue()
 
 # Initial parameters for the logging
 logging.basicConfig(filename='RFID_Station_log.log', level=logging.INFO, format='%(asctime)s %(message)s')
@@ -25,7 +25,7 @@ logging.basicConfig(filename='RFID_Station_log.log', level=logging.INFO, format=
 
 # TCP Server that uses individual threads for the different clients
 class ThreadedServer(threading.Thread):
-    def __init__(self, host, port, auto_q, manual_q, datamatrix_q, read_req_q, comms_q):
+    def __init__(self, host, port, auto_q, manual_q, datamatrix_q, read_req_q, comms_q, status_q):
         super(ThreadedServer, self).__init__()
         try:
             self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -37,6 +37,7 @@ class ThreadedServer(threading.Thread):
             self.datamatrix_q = datamatrix_q
             self.read_req_q = read_req_q
             self.comms_q = comms_q
+            self.status_q = status_q
             self.stop_request = threading.Event()
             self.clients_count = 0
             self.rfid_client = ClientRFID
@@ -60,7 +61,7 @@ class ThreadedServer(threading.Thread):
             conn, address = self.s.accept()
             if address[0] == '10.100.25.65':
                 self.rfid_client = ClientRFID(conn, self.auto_q, self.manual_q, self.datamatrix_q, self.read_req_q,
-                                               self.comms_q)
+                                               self.comms_q, self.status_q)
                 self.clients.append(self.rfid_client)
                 info_rfid_connected = '[+] Client connected: {0}'.format(address[0])
                 print info_rfid_connected
@@ -94,7 +95,7 @@ class ThreadedServer(threading.Thread):
 
 
 class ClientRFID(threading.Thread):
-    def __init__(self, conn, automatic_q, manual_q, datamatrix_q, read_req_q, comms_q):
+    def __init__(self, conn, automatic_q, manual_q, datamatrix_q, read_req_q, comms_q, status_q):
         super(ClientRFID, self).__init__()
         self.conn = conn
         self.data = ""
@@ -103,6 +104,7 @@ class ClientRFID(threading.Thread):
         self.data_matrix_q = datamatrix_q
         self.read_request_q = read_req_q
         self.comms_q = comms_q
+        self.status_q = status_q
         self.tags_list = []
         self.stop_request = threading.Event()
 
@@ -200,7 +202,7 @@ class ClientRFID(threading.Thread):
         tag_is_unique = True
 
         # Only one Tag was found in the HF Field
-        # TODO: Change the logic to throw a time out
+        # TODO: Rework the delay logic, the pause is not between the insertion in the queue but the reading of the tag
         # TODO: Error handling if no valid scanner Result
         if tag_is_unique:
 
@@ -212,13 +214,20 @@ class ClientRFID(threading.Thread):
             # Place the read request in the Queue
             read_request = 1
             read_q.put(read_request)
+            # The task is done
+            read_q.task_done()
 
-            try:
-                # Pull the Data matrix from the Queue
-                data_matrix_result = data_m_q.get()
-                info_scanned_data = "The scanned data is: " + str(data_matrix_result)
-                # Output event to console
-                self.comms_q.put(info_scanned_data)
+            # Pull the Data matrix from the Queue
+            data_matrix_result = data_m_q.get()
+
+            # Check the content of the scanned data
+            if data_matrix_result == "NoRead":
+                # Read 2D Error
+                error_code = "Keine datamatrix"
+                self.status_q.put(error_code)
+                return error_code
+
+            else: # Some code was read
 
                 # create the complete command for transmission
                 transmission_command = RFH630_commands.write_custom_string(spaces_uid, data_matrix_result)
@@ -229,21 +238,27 @@ class ClientRFID(threading.Thread):
                 write_confirmation = self.conn.recv(size)
 
                 if write_confirmation == "\x02sAN WrtMltBlckStr 0\x03":
-                    print "*** Writing process returned no errors ****\n"
+                    print "*** Writing process IO for Tag ++++ " + str(pretty_uid) + "++++"
                     # Enter the tag into the list
                     self.list_tags(raw_uid)
                     # Entry in log and output to console
                     info_write_success = "Tag " + str(raw_uid) + " written with scanner data " \
-                                                + str(data_matrix_result) +"\n"
+                                                + str(data_matrix_result) + "\n"
                     logging.info(info_write_success)
                     self.comms_q.put(info_write_success)
+
+                    # Write the status of the variable
+                    error_code = "process completed"
+                    self.status_q.put(error_code)
+                    return error_code
+
                 else:
-                    print "\n" + "++++ Tag could not be written"
+                    print "\n" + "++++ Tag " + str(pretty_uid) + " could not be written"
 
-            except data_m_q.empty():
-                print "No Scanner value in the Queue"
-                self.close()
-
+                    # Write the status of the variable
+                    error_code = "Writing failed"
+                    self.status_q.put(error_code)
+                    return error_code
         else:
             info_no_tag_detected = "No Tag detected, keep waiting"
             self.comms_q.put(info_no_tag_detected)
@@ -300,13 +315,13 @@ class ClientScanner(threading.Thread):
 
 
 class MyApp(QtGui.QMainWindow, Ui_MainWindow):
-    def __init__(self, automatic_queue, manual_queue, data_matrix_q, read_request_q, client_rfid, client_reader, comms_q):
+    def __init__(self, automatic_queue, manual_queue, data_matrix_q, read_request_q, client_rfid, client_reader, comms_q, status_q):
         QtGui.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
 
         # The delay for the slider
-        self.delay_time = 1000
+        self.delay_time = 500
         self.timeoutTimer = QtCore.QTimer()
         self.timeoutTimer.setInterval(self.delay_time)  # The time on the slider in s
         self.timeoutTimer.setSingleShot(False)
@@ -337,10 +352,20 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.data_matrix_q = data_matrix_q
         self.read_request_q = read_request_q
         self.comms_q = comms_q
+        self.status_q = status_q
 
     def recursive_timer(self):
         # Executes this code every n seconds (as given by the slider)
-        self.automatic_queue.put(1)
+        operation_result = self.status_q.get()
+
+        if operation_result != "process completed":
+            # Stop the automatic process
+            print "I stopped because of an error: " + operation_result
+            self.auto_stop()
+
+        else:
+            # Place a new job request for the RFID transponder in the queue
+            self.automatic_queue.put(1)
 
     def pull_messages(self):
         # Pulls messages from the message queue and forwards them to the console of the GUI
@@ -365,7 +390,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         super(QtGui.QMainWindow, self).closeEvent(event)
 
     def slider_valuechange(self):
-        self.delay_time = self.speed_slider.value() * 1000
+        #self.delay_time = self.speed_slider.value() * 1000
+        pass
 
     def console_output(self, input_text):
         # Write text to the console
@@ -387,6 +413,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.btn_status_run.setStyleSheet("background-color: green")
         self.btn_status_idle.setStyleSheet("background-color: None")
         self.console_output("Automatisches Prozess gestarted")
+        # Give the RFID worker the first job, the rest ones are given sequentially by the recursive timer
+        self.automatic_queue.put(1)
         self.automatic_loop()
 
     def auto_stop(self):
@@ -441,13 +469,13 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 port_num = 2113
 app = QtGui.QApplication(sys.argv)
 # Instantiate the server class and start listening for clients
-tcp_server = ThreadedServer('', port_num, automatic_queue, manual_queue, data_matrix_q, read_request_q, comms_queue)
+tcp_server = ThreadedServer('', port_num, automatic_queue, manual_queue, data_matrix_q, read_request_q, comms_queue, status_queue)
 tcp_server.start()
 
 while tcp_server.clients_count != 2:
     continue
 
-w = MyApp(automatic_queue, manual_queue, data_matrix_q, read_request_q, tcp_server.rfid_client, tcp_server.scanner_client, comms_queue)
+w = MyApp(automatic_queue, manual_queue, data_matrix_q, read_request_q, tcp_server.rfid_client, tcp_server.scanner_client, comms_queue, status_queue)
 
 w.setWindowTitle('RFID Labels Station V1.0')
 w.show()
