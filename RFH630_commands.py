@@ -5,6 +5,11 @@
 from __future__ import division
 import math
 
+# get UID directly processed from device. The evaluation conditions in the device are:
+# if Strength of Signal (Transponder) >= 5 and the number of valid codes read = 1
+# the trigger command is configured as well in the device
+get_UID_auto = "\x02read\x03"
+
 # Inventory / Get UID (All in field)
 get_UID = '\x02sMN CSGtUID\x03'
 
@@ -85,21 +90,18 @@ in order to transmit the information to the RFID transponder
 
 
 def extract_uid(hex_string):
-    # This functions takes the UID values and fills with zeros the values under 0xA
+    # This functions returns the raw UID, a pretty print version and one with spaces (for the writing process)
 
-    # get the count of present tags
-    tags_counter = hex_string[13:17]
+    # insert a "-" every two characters
+    t = iter(hex_string)
+    pretty_uid = '-'.join(a + b for a, b in zip(t, t))
+    raw_uid = hex_string
 
-    # No tag is present
-    if tags_counter == "1 22":
-        raw_uid = "No Tag"
-    # one Tag is present
-    elif tags_counter == "1 0 ":
-        raw_uid = hex_string[21:-1]
-    else:
-        raw_uid = "Error"
+    # add spaces to the UID
+    t2 = iter(hex_string)
+    spaces_uid = ' '.join(a2 + b2 for a2, b2 in zip(t2, t2))
 
-    return raw_uid
+    return raw_uid, pretty_uid, spaces_uid
 
 
 def read_tag_content(tag_uid):

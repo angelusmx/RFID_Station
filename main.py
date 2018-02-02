@@ -6,6 +6,7 @@ import threading
 import RFH630_commands
 from time import gmtime, strftime
 import logging
+import time
 
 # The UI file is in the same folder as the project
 qtCreatorFile = "mainwindow_V4.ui"
@@ -154,23 +155,6 @@ class ClientRFID(threading.Thread):
 
         return response
 
-    def extract_uid(self, hex_string):
-        # This functions takes the UID values and fills with zeros the values under 0xA
-
-        # get the count of present tags
-        tags_counter = hex_string[13:17]
-
-        # No tag is present
-        if tags_counter == "1 22":
-            raw_uid = "No Tag"
-        # one Tag is present
-        elif tags_counter == "1 0 ":
-            raw_uid = hex_string[21:-1]
-        else:
-            raw_uid = "Error"
-
-        return raw_uid
-
     def read_rfid(self):
 
         # Buffer size
@@ -203,16 +187,13 @@ class ClientRFID(threading.Thread):
     def write_rfid(self, read_q, data_m_q):
         size = 512
 
-        IO_counter = 0
-
-        # Send the inventory request
-        self.conn.sendall(RFH630_commands.get_UID)
+        # Get the UID automatically from the device
+        self.conn.sendall(RFH630_commands.get_UID_auto)
         # expect something in return
         tag_uid = self.conn.recv(size)
 
         # extract the UID from the response of the device
-        complete_UID = self.extract_uid(tag_uid)
-        # TODO: if the reponse is Error, give out an error and break the cycle
+        raw_uid, pretty_uid, spaces_uid = RFH630_commands.extract_uid(tag_uid)
 
         # Check the uniqueness of the Tag
         # tag_is_unique = self.check_unique(complete_UID)
@@ -221,12 +202,12 @@ class ClientRFID(threading.Thread):
         # Only one Tag was found in the HF Field
         # TODO: Change the logic to throw a time out
         # TODO: Error handling if no valid scanner Result
-        if complete_UID != "No Tag" and tag_is_unique:
+        if tag_is_unique:
 
             # Log the event and write to the console
-            info_tag_detected = "Tag detected with UID: " + complete_UID
+            info_tag_detected = "Tag detected with UID: " + pretty_uid
             self.comms_q.put(info_tag_detected)
-            logging.info("Tag detected with UID: " + complete_UID)
+            logging.info("Tag detected with UID: " + pretty_uid)
 
             # Place the read request in the Queue
             read_request = 1
@@ -240,7 +221,7 @@ class ClientRFID(threading.Thread):
                 self.comms_q.put(info_scanned_data)
 
                 # create the complete command for transmission
-                transmission_command = RFH630_commands.write_custom_string(complete_UID, data_matrix_result)
+                transmission_command = RFH630_commands.write_custom_string(spaces_uid, data_matrix_result)
                 # write the Memory block n (n as variable)
                 self.conn.sendall(transmission_command)
 
@@ -249,12 +230,10 @@ class ClientRFID(threading.Thread):
 
                 if write_confirmation == "\x02sAN WrtMltBlckStr 0\x03":
                     print "*** Writing process returned no errors ****\n"
-                    IO_counter += 1
-                    print "IO Tags = " + str(IO_counter)
                     # Enter the tag into the list
-                    self.list_tags(complete_UID)
+                    self.list_tags(raw_uid)
                     # Entry in log and output to console
-                    info_write_success = "Tag " + str(complete_UID) + " written with scanner data " \
+                    info_write_success = "Tag " + str(raw_uid) + " written with scanner data " \
                                                 + str(data_matrix_result) +"\n"
                     logging.info(info_write_success)
                     self.comms_q.put(info_write_success)
