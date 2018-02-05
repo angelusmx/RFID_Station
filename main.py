@@ -107,20 +107,24 @@ class ClientRFID(threading.Thread):
         self.status_q = status_q
         self.tags_list = []
         self.stop_request = threading.Event()
+        self.auto_loop = False
 
     def run(self):
         # Call the tag writing method only once, the loop is implemented in the PyQt class
         print "the RFID handling service started"
         while not self.stop_request.isSet():
-            job_enquiry = self.automatic_q.get()
-            if job_enquiry == 1:
+            while self.auto_loop:
                 self.write_rfid(self.read_request_q, self.data_matrix_q)
-            else:
-                print "No task request found in the queue"
 
     def join(self, timeout=2):
         self.stop_request.set()
         super(ClientRFID, self).join(2)
+
+    def loop_control(self):
+        if self.auto_loop:
+            self.auto_loop = False
+        else:
+            self.auto_loop = True
 
     def list_tags(self, tag_uid):
         # Check if the numbers of elements is >= 1000
@@ -192,19 +196,23 @@ class ClientRFID(threading.Thread):
         # Get the UID automatically from the device
         self.conn.sendall(RFH630_commands.get_UID_auto)
         # expect something in return
-        tag_uid = self.conn.recv(size)
+        self.conn.settimeout(1)
+        try:
+            tag_uid = self.conn.recv(size)
+        except socket.timeout:
+            print "no data seen in " + str(1) + " seconds, trying later"
+            return
+        else:
+            # extract the UID from the response of the device
+            raw_uid, pretty_uid, spaces_uid = RFH630_commands.extract_uid(tag_uid)
 
-        # extract the UID from the response of the device
-        raw_uid, pretty_uid, spaces_uid = RFH630_commands.extract_uid(tag_uid)
+            # Check the uniqueness of the Tag
+            # tag_is_unique = self.check_unique(complete_UID)
+            tag_is_unique = True
 
-        # Check the uniqueness of the Tag
-        # tag_is_unique = self.check_unique(complete_UID)
-        tag_is_unique = True
-
-        # Only one Tag was found in the HF Field
-        # TODO: Rework the delay logic, the pause is not between the insertion in the queue but the reading of the tag
-        # TODO: Error handling if no valid scanner Result
-        if tag_is_unique:
+            # Only one Tag was found in the HF Field
+            # TODO: Rework the delay logic, the pause is not between the insertion in the queue but the reading of the tag
+            # TODO: Error handling if no valid scanner Result
 
             # Log the event and write to the console
             info_tag_detected = "Tag detected with UID: " + pretty_uid
@@ -259,9 +267,6 @@ class ClientRFID(threading.Thread):
                     error_code = "Writing failed"
                     self.status_q.put(error_code)
                     return error_code
-        else:
-            info_no_tag_detected = "No Tag detected, keep waiting"
-            self.comms_q.put(info_no_tag_detected)
 
     def close(self):
         self.conn.close()
@@ -284,13 +289,18 @@ class ClientScanner(threading.Thread):
         # print "the 2D Scanner handling service started"
         while not self.stop_request.isSet():
             try:
-                self.read_request_q.get()
+                self.read_request_q.get(False)
+            except Queue.Empty:
+                # Handle empty queue here
+                pass
+            else:
+                # Handle task here and call q.task_done()
                 self.conn.sendall("\x02read\x03")
                 data_matrix = self.conn.recv(self.buffer_size)
+
                 # Place the value in the values queue
                 self.data_matrix_q.put(data_matrix)
-            except self.read_request_q.Empty:
-                continue
+                #self.read_request_q.task_done()
 
     def join(self, timeout=None):
         self.stop_request.set()
@@ -416,8 +426,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.btn_auto_start.setStyleSheet("background-color: None")
         self.console_output("Automatisches Prozess gestarted")
         # Give the RFID worker the first job, the rest ones are given sequentially by the recursive timer
-        self.automatic_queue.put(1)
-        self.automatic_loop()
+        self.client_rfid.loop_control()
+        #self.automatic_loop()
 
     def auto_stop(self):
         self.automatic_trigger = False
@@ -434,6 +444,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.btn_auto_start.setStyleSheet("background-color: Green")
         self.console_output("Automatisches Prozess wurde angehalten")
         # QtGui.QApplication.processEvents()
+
+        self.client_rfid.loop_control()
 
     def man_datamatrix(self):
         self.console_output("Information auf die Datamatrix wird ausgelesen")
