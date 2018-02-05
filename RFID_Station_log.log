@@ -2948,3 +2948,663 @@ INFO:root:Main PyQt window started
 2018-02-05 13:58:27,098 Tag detected with UID: E0-04-01-50-81-2D-61-F3
 2018-02-05 13:58:29,188 Tag detected with UID: E0-04-01-50-81-2D-61-F3
 2018-02-05 13:58:31,279 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 15:12:10,648 Application Started
+2018-02-05 15:12:10,976 [+] Client connected: 10.100.25.64
+2018-02-05 15:12:12,161 [+] Client connected: 10.100.25.65
+2018-02-05 15:12:12,161  ** All clients connected **
+2018-02-05 15:12:12,520 Main PyQt window started
+2018-02-05 15:12:18,635 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:12:21,365 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:12:23,940 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:12:26,638 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:12:29,229 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:12:37,684 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:12:40,335 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:12:43,035 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:12:45,733 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:12:48,308 Tag detected with UID: E0-04-01-50-81-2D-63-2E
+2018-02-05 15:12:48,572 Tag E0040150812D632E written with scanner data 123456789020123100001
+
+2018-02-05 15:12:50,601 Tag detected with UID: E0-04-01-50-81-2D-63-2E
+2018-02-05 15:12:50,865 Tag E0040150812D632E written with scanner data 123456789020123100001
+
+2018-02-05 15:12:52,894 Tag detected with UID: E0-04-01-50-81-2D-63-2E
+2018-02-05 15:12:53,158 Tag E0040150812D632E written with scanner data 123456789020123100001
+
+2018-02-05 15:12:55,390 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:12:57,963 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:13:00,663 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 15:13:03,174 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 15:13:07,262 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 15:13:11,348 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 15:13:15,467 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 15:13:19,555 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 15:13:23,641 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 15:13:31,161 Application terminated
+2018-02-05 15:13:31,161 [+] Client connected: 10.100.25.65
+2018-02-05 15:13:42,361 Application Started
+2018-02-05 15:13:43,173 [+] Client connected: 10.100.25.64
+2018-02-05 15:13:46,667 [+] Client connected: 10.100.25.65
+2018-02-05 15:13:46,667  ** All clients connected **
+2018-02-05 15:13:46,760 Main PyQt window started
+2018-02-05 15:13:59,552 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 15:14:03,640 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 15:14:07,726 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 15:14:17,835 Tag detected with UID: E0-04-01-50-81-2D-63-2E
+2018-02-05 15:14:18,101 Tag E0040150812D632E written with scanner data 123456789020123100001
+
+2018-02-05 15:14:20,144 Tag detected with UID: E0-04-01-50-81-2D-63-2E
+2018-02-05 15:14:20,410 Tag E0040150812D632E written with scanner data 123456789020123100001
+
+2018-02-05 15:14:22,844 Tag detected with UID: E0-04-01-50-81-2D-63-2E
+2018-02-05 15:14:23,467 Tag E0040150812D632E written with scanner data 123456789020123100001
+
+2018-02-05 15:14:25,994 Tag detected with UID: E0-04-01-50-81-2D-66-C6
+2018-02-05 15:20:53,085 Application Started
+2018-02-05 15:20:54,687 [+] Client connected: 10.100.25.64
+2018-02-05 15:20:55,197 [+] Client connected: 10.100.25.65
+2018-02-05 15:20:55,203  ** All clients connected **
+2018-02-05 15:20:55,483 Main PyQt window started
+2018-02-05 15:21:00,019 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 15:21:03,500 Application terminated
+2018-02-05 15:27:39,201 Application Started
+2018-02-05 15:27:39,221 Application Started
+2018-02-05 15:27:39,496 [+] Client connected: 10.100.25.64
+2018-02-05 15:27:43,713 [+] Client connected: 10.100.25.65
+2018-02-05 15:27:43,717  ** All clients connected **
+2018-02-05 15:27:43,914 Main PyQt window started
+2018-02-05 15:27:48,048 Application Started
+2018-02-05 15:27:49,336 [+] Client connected: 10.100.25.64
+2018-02-05 15:27:51,714 [+] Client connected: 10.100.25.65
+2018-02-05 15:27:51,716  ** All clients connected **
+2018-02-05 15:27:51,821 Main PyQt window started
+2018-02-05 15:27:59,904 Tag detected with UID: E0-04-01-50-81-2D-67-F5
+2018-02-05 15:28:17,309 Tag detected with UID: E0-04-01-50-81-2D-67-F5
+2018-02-05 15:28:24,092 Application terminated
+2018-02-05 15:30:04,776 Application Started
+2018-02-05 15:30:06,094 [+] Client connected: 10.100.25.64
+2018-02-05 16:06:39,888 Application Started
+2018-02-05 16:06:42,029 [+] Client connected: 10.100.25.64
+2018-02-05 16:06:44,298 [+] Client connected: 10.100.25.65
+2018-02-05 16:06:44,303  ** All clients connected **
+2018-02-05 16:06:44,756 Main PyQt window started
+2018-02-05 16:07:00,211 Tag detected with UID: E0-04-01-50-81-2D-67-F5
+2018-02-05 16:07:13,829 Tag detected with UID: E0-04-01-50-81-2D-67-F5
+2018-02-05 16:07:23,999 Tag detected with UID: E0-04-01-50-81-2D-67-F5
+2018-02-05 16:07:43,378 Application terminated
+2018-02-05 16:10:35,716 Application Started
+2018-02-05 16:10:37,375 [+] Client connected: 10.100.25.64
+2018-02-05 16:10:38,826 [+] Client connected: 10.100.25.65
+2018-02-05 16:10:38,828  ** All clients connected **
+2018-02-05 16:10:38,940 Main PyQt window started
+2018-02-05 16:11:39,812 Application Started
+2018-02-05 16:11:40,826 [+] Client connected: 10.100.25.65
+2018-02-05 16:11:41,710 [+] Client connected: 10.100.25.64
+2018-02-05 16:11:41,710  ** All clients connected **
+2018-02-05 16:11:41,865 Main PyQt window started
+2018-02-05 16:11:49,822 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 16:12:03,624 Tag detected with UID: E0-04-01-50-81-2D-67-F5
+2018-02-05 16:12:16,052 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:16,480 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:16,507 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:16,760 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:16,793 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:17,046 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:17,075 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:17,328 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:17,357 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:17,611 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:17,640 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:17,894 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:17,923 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:18,187 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:18,214 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:18,469 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:18,496 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:18,750 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:18,779 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:19,045 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:19,072 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:19,325 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:19,352 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:19,614 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:19,644 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:19,938 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:19,967 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:20,221 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:20,250 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:20,503 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:20,532 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:20,786 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:20,813 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:21,079 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:21,109 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:21,365 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:21,391 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:21,648 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:21,674 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:21,928 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:21,957 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:22,211 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:22,240 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:22,496 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:22,526 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:22,780 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:22,813 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:23,071 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:23,099 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:23,355 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:23,382 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:23,640 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:23,667 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:23,924 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:23,953 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:24,209 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:24,237 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:24,492 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:24,519 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:24,775 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:24,802 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:25,062 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:25,089 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:25,345 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:25,372 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:25,625 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:25,658 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:25,914 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:25,943 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:26,197 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:26,226 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:26,479 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:26,506 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:26,763 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:26,790 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:27,046 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:27,075 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:27,332 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:27,361 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:27,617 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:27,644 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:27,901 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:27,930 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:28,187 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:28,216 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:28,476 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:28,503 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:28,759 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:28,789 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:29,046 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:29,073 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:29,328 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:29,357 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:29,624 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:29,651 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:30,006 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:30,036 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:30,289 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:30,316 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:30,588 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:30,615 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:30,868 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:30,897 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:31,150 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:31,178 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:31,441 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:31,470 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:31,746 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:31,775 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:32,029 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:32,058 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:32,313 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:32,342 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:32,598 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:32,628 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:32,887 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:32,915 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:33,171 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:33,198 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:33,457 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:33,486 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:33,743 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:33,773 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:34,029 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:34,056 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:34,322 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:34,349 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:34,608 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:34,635 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:34,901 Tag E0040150812D61E8 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:34,930 Tag detected with UID: E0-04-01-50-81-2D-61-E8
+2018-02-05 16:12:35,720 Tag detected with UID: E0-04-01-50-81-2D-61-F3
+2018-02-05 16:12:37,467 Tag E0040150812D61F3 written with scanner data 123456789020123100001
+
+2018-02-05 16:12:58,569 Application terminated
+2018-02-05 16:13:43,736 Application Started
+2018-02-05 16:13:43,828 [+] Client connected: 10.100.25.65
+2018-02-05 16:13:46,569 [+] Client connected: 10.100.25.64
+2018-02-05 16:13:46,571  ** All clients connected **
+2018-02-05 16:13:46,709 Main PyQt window started
+2018-02-05 16:13:52,601 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-67-FE, [Data]  123456789020123100001   
+2018-02-05 16:14:19,082 Application Started
+2018-02-05 16:14:20,328 [+] Client connected: 10.100.25.65
+2018-02-05 16:14:21,220 [+] Client connected: 10.100.25.64
+2018-02-05 16:14:21,223  ** All clients connected **
+2018-02-05 16:14:21,424 Main PyQt window started
+2018-02-05 16:14:28,298 No Datamatrix could be read
+2018-02-05 16:14:30,822 Application terminated
+2018-02-05 16:14:30,829 [+] Client connected: 10.100.25.65
+2018-02-05 16:17:30,180 Application Started
+2018-02-05 16:17:30,822 [+] Client connected: 10.100.25.64
+2018-02-05 16:17:31,345 [+] Client connected: 10.100.25.65
+2018-02-05 16:17:31,345  ** All clients connected **
+2018-02-05 16:17:31,460 Main PyQt window started
+2018-02-05 16:17:45,246 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-63-2E, [Data] 
+2018-02-05 16:26:17,499 Application Started
+2018-02-05 16:26:18,339 [+] Client connected: 10.100.25.65
+2018-02-05 16:26:19,138 [+] Client connected: 10.100.25.64
+2018-02-05 16:26:19,140  ** All clients connected **
+2018-02-05 16:26:19,322 Main PyQt window started
+2018-02-05 16:26:25,119 No Datamatrix could be read
+2018-02-05 16:27:29,907 Application Started
+2018-02-05 16:27:30,377 [+] Client connected: 10.100.25.64
+2018-02-05 16:27:34,841 [+] Client connected: 10.100.25.65
+2018-02-05 16:27:34,845  ** All clients connected **
+2018-02-05 16:27:35,063 Main PyQt window started
+2018-02-05 16:28:30,157 Application Started
+2018-02-05 16:28:30,329 [+] Client connected: 10.100.25.64
+2018-02-05 16:28:32,342 [+] Client connected: 10.100.25.65
+2018-02-05 16:28:32,345  ** All clients connected **
+2018-02-05 16:28:32,569 Main PyQt window started
+2018-02-05 16:29:02,627 Application Started
+2018-02-05 16:29:03,842 [+] Client connected: 10.100.25.65
+2018-02-05 16:29:05,589 [+] Client connected: 10.100.25.64
+2018-02-05 16:29:05,592  ** All clients connected **
+2018-02-05 16:29:05,772 Main PyQt window started
+2018-02-05 16:29:52,194 Application Started
+2018-02-05 16:29:53,342 [+] Client connected: 10.100.25.65
+2018-02-05 16:29:54,125 [+] Client connected: 10.100.25.64
+2018-02-05 16:29:54,130  ** All clients connected **
+2018-02-05 16:29:54,388 Main PyQt window started
+2018-02-05 16:31:52,680 Application Started
+2018-02-05 16:31:53,680 [+] Client connected: 10.100.25.64
+2018-02-05 16:31:54,845 [+] Client connected: 10.100.25.65
+2018-02-05 16:31:54,848  ** All clients connected **
+2018-02-05 16:31:54,997 Main PyQt window started
+2018-02-05 16:32:00,892 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:40:05,108 Application Started
+2018-02-05 16:40:05,385 [+] Client connected: 10.100.25.65
+2018-02-05 16:40:07,233 [+] Client connected: 10.100.25.64
+2018-02-05 16:40:07,239  ** All clients connected **
+2018-02-05 16:40:07,635 Main PyQt window started
+2018-02-05 16:40:28,582 Application Started
+2018-02-05 16:40:30,385 [+] Client connected: 10.100.25.65
+2018-02-05 16:40:30,973 [+] Client connected: 10.100.25.64
+2018-02-05 16:40:30,979  ** All clients connected **
+2018-02-05 16:40:31,229 Main PyQt window started
+2018-02-05 16:40:37,023 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:40:46,523 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:41:46,642 Application Started
+2018-02-05 16:41:49,223 [+] Client connected: 10.100.25.64
+2018-02-05 16:41:50,391 [+] Client connected: 10.100.25.65
+2018-02-05 16:41:50,392  ** All clients connected **
+2018-02-05 16:41:50,519 Main PyQt window started
+2018-02-05 16:42:14,428 Application Started
+2018-02-05 16:42:15,569 [+] Client connected: 10.100.25.64
+2018-02-05 16:42:17,890 [+] Client connected: 10.100.25.65
+2018-02-05 16:42:17,891  ** All clients connected **
+2018-02-05 16:42:18,020 Main PyQt window started
+2018-02-05 16:42:28,775 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:42:34,289 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:42:51,759 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:42:54,424 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:43:07,885 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:44:31,210 Application Started
+2018-02-05 16:44:32,108 [+] Client connected: 10.100.25.64
+2018-02-05 16:44:33,395 [+] Client connected: 10.100.25.65
+2018-02-05 16:44:33,398  ** All clients connected **
+2018-02-05 16:44:33,535 Main PyQt window started
+2018-02-05 16:44:38,428 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:44:40,782 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:44:45,437 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:44:47,891 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:44:55,661 No Datamatrix could be read
+2018-02-05 16:44:59,717 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:45:00,993 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:45:01,391 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:45:01,555 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:45:03,795 Application terminated
+2018-02-05 16:46:15,144 Application Started
+2018-02-05 16:46:15,796 [+] Client connected: 10.100.25.64
+2018-02-05 16:46:18,901 [+] Client connected: 10.100.25.65
+2018-02-05 16:46:18,905  ** All clients connected **
+2018-02-05 16:46:19,171 Main PyQt window started
+2018-02-05 16:46:25,558 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:46:27,566 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:46:29,503 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:46:29,664 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:46:29,799 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:46:29,948 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:46:30,088 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:46:30,226 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:46:30,369 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:46:30,509 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:46:42,282 Application Started
+2018-02-05 16:46:42,904 [+] Client connected: 10.100.25.65
+2018-02-05 16:46:44,859 [+] Client connected: 10.100.25.64
+2018-02-05 16:46:44,864  ** All clients connected **
+2018-02-05 16:46:45,144 Main PyQt window started
+2018-02-05 16:47:13,078 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:50:48,868 Application Started
+2018-02-05 16:50:49,796 [+] Client connected: 10.100.25.64
+2018-02-05 16:50:51,907 [+] Client connected: 10.100.25.65
+2018-02-05 16:50:51,907  ** All clients connected **
+2018-02-05 16:50:52,026 Main PyQt window started
+2018-02-05 16:50:58,565 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:51:01,823 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:51:06,170 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:51:09,121 Application terminated
+2018-02-05 16:51:17,743 Application Started
+2018-02-05 16:51:18,122 [+] Client connected: 10.100.25.64
+2018-02-05 16:51:19,407 [+] Client connected: 10.100.25.65
+2018-02-05 16:51:19,410  ** All clients connected **
+2018-02-05 16:51:19,581 Main PyQt window started
+2018-02-05 16:51:35,605 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:52:12,016 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:52:41,684 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:23,282 Application Started
+2018-02-05 16:53:23,612 [+] Client connected: 10.100.25.64
+2018-02-05 16:53:23,904 [+] Client connected: 10.100.25.65
+2018-02-05 16:53:23,911  ** All clients connected **
+2018-02-05 16:53:24,135 Main PyQt window started
+2018-02-05 16:53:30,190 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:32,269 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:35,332 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:35,476 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:35,611 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:35,759 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:35,904 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:36,049 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:36,200 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:36,344 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:37,467 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:38,687 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:39,898 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:41,061 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:42,246 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:43,486 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:45,720 Application terminated
+2018-02-05 16:53:47,842 Application Started
+2018-02-05 16:53:48,721 [+] Client connected: 10.100.25.64
+2018-02-05 16:53:50,904 [+] Client connected: 10.100.25.65
+2018-02-05 16:53:50,907  ** All clients connected **
+2018-02-05 16:53:51,046 Main PyQt window started
+2018-02-05 16:53:58,448 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:53:59,934 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:54:03,601 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:54:24,707 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:54:26,234 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:54:27,993 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:54:29,578 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:54:38,107 Application Started
+2018-02-05 16:54:38,404 [+] Client connected: 10.100.25.65
+2018-02-05 16:54:39,082 [+] Client connected: 10.100.25.64
+2018-02-05 16:54:39,088  ** All clients connected **
+2018-02-05 16:54:39,269 Main PyQt window started
+2018-02-05 16:55:04,786 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:55:11,579 Application terminated
+2018-02-05 16:55:16,058 Application Started
+2018-02-05 16:55:16,904 [+] Client connected: 10.100.25.65
+2018-02-05 16:55:17,584 [+] Client connected: 10.100.25.64
+2018-02-05 16:55:17,585  ** All clients connected **
+2018-02-05 16:55:17,713 Main PyQt window started
+2018-02-05 16:58:20,163 Application Started
+2018-02-05 16:58:22,989 [+] Client connected: 10.100.25.64
+2018-02-05 16:58:24,407 [+] Client connected: 10.100.25.65
+2018-02-05 16:58:24,408  ** All clients connected **
+2018-02-05 16:58:24,542 Main PyQt window started
+2018-02-05 16:58:31,789 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-66-C6, [Data]  123456789020123100001   
+2018-02-05 16:58:35,680 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-66-C6, [Data]  123456789020123100001   
+2018-02-05 16:58:40,940 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:58:42,897 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:58:55,122 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:58:56,789 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:59:23,339 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 16:59:26,055 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data] 
+2018-02-05 16:59:27,513 Manual reading of RFID Tag: [UID] s-AN- R-dM-lt-Bl-ck-St-r -0 -18- N-oR-ea-d - 9-02-01-23-10-00-01-  - , [Data] 
+2018-02-05 16:59:29,456 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:30,621 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:35,177 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:38,819 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:39,709 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:42,164 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:42,700 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:42,940 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:43,148 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:43,335 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:43,546 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:43,780 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:44,148 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 16:59:50,588 Application Started
+2018-02-05 16:59:52,407 [+] Client connected: 10.100.25.65
+2018-02-05 16:59:52,921 [+] Client connected: 10.100.25.64
+2018-02-05 16:59:52,926  ** All clients connected **
+2018-02-05 16:59:53,223 Main PyQt window started
+2018-02-05 17:00:17,003 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-63-2E, [Data]  123456789020123100001   
+2018-02-05 17:00:50,493 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-67-FE, [Data]  123456789020123100001   
+2018-02-05 17:01:29,361 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:02:11,141 Manual reading of RFID Tag: [UID] No-Re-ad-E0-04-01-50-81-2D-67-F5, [Data] 
+2018-02-05 17:02:34,415 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6C-B4, [Data]                          
+2018-02-05 17:05:17,233 Application Started
+2018-02-05 17:05:17,915 [+] Client connected: 10.100.25.65
+2018-02-05 17:05:28,117 Application Started
+2018-02-05 17:05:28,470 [+] Client connected: 10.100.25.64
+2018-02-05 17:05:28,944 [+] Client connected: 10.100.25.65
+2018-02-05 17:05:29,013  ** All clients connected **
+2018-02-05 17:05:29,220 Main PyQt window started
+2018-02-05 17:05:32,805 Application Started
+2018-02-05 17:05:34,418 [+] Client connected: 10.100.25.65
+2018-02-05 17:05:34,469 [+] Client connected: 10.100.25.64
+2018-02-05 17:05:34,470  ** All clients connected **
+2018-02-05 17:05:34,608 Main PyQt window started
+2018-02-05 17:05:39,898 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-67-F5, [Data]  NoRead                  
+2018-02-05 17:05:53,697 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-67-F5, [Data]  NoRead                  
+2018-02-05 17:06:03,938 Application terminated
+2018-02-05 17:06:08,075 Application Started
+2018-02-05 17:06:09,418 [+] Client connected: 10.100.25.65
+2018-02-05 17:06:09,941 [+] Client connected: 10.100.25.64
+2018-02-05 17:06:09,943  ** All clients connected **
+2018-02-05 17:06:10,056 Main PyQt window started
+2018-02-05 17:06:53,594 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-67-F5, [Data]  NoRead                  
+2018-02-05 17:09:51,920 Application Started
+2018-02-05 17:09:52,131 [+] Client connected: 10.100.25.64
+2018-02-05 17:09:52,434 [+] Client connected: 10.100.25.65
+2018-02-05 17:09:52,436  ** All clients connected **
+2018-02-05 17:09:52,618 Main PyQt window started
+2018-02-05 17:10:57,924 Application Started
+2018-02-05 17:10:59,184 [+] Client connected: 10.100.25.64
+2018-02-05 17:11:02,438 [+] Client connected: 10.100.25.65
+2018-02-05 17:11:02,441  ** All clients connected **
+2018-02-05 17:11:02,706 Main PyQt window started
+2018-02-05 17:11:07,480 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:11:11,200 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:11:13,153 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-66-C6, [Data] 
+2018-02-05 17:11:15,776 Manual reading of RFID Tag: [UID] s-AN- R-dM-lt-Bl-ck-St-r -0 -18- 1-23-45-67-89-02-01-23-10-00-01-  - , [Data] 
+2018-02-05 17:11:16,714 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:17,446 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:17,956 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:18,305 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:18,683 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:20,575 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:21,236 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:21,763 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:22,296 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:22,953 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:23,392 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:24,013 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:24,565 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:25,072 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:25,684 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:26,214 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:26,743 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:27,223 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:27,832 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:28,459 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:11:29,391 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data] 
+2018-02-05 17:11:30,082 Manual reading of RFID Tag: [UID] s-AN- R-dM-lt-Bl-ck-St-r -0 -18- N-oR-ea-d - 9-02-01-23-10-00-01-  - , [Data] 
+2018-02-05 17:11:30,693 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:11:30,964 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:13:46,147 Application Started
+2018-02-05 17:13:48,234 [+] Client connected: 10.100.25.64
+2018-02-05 17:13:48,444 [+] Client connected: 10.100.25.65
+2018-02-05 17:13:48,444  ** All clients connected **
+2018-02-05 17:13:48,565 Main PyQt window started
+2018-02-05 17:13:54,987 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:13:57,321 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:03,229 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:04,822 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:05,426 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:05,737 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:05,944 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:06,151 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:06,315 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:06,493 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:06,661 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:06,858 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:07,055 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:07,233 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:13,602 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:15,223 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data] 
+2018-02-05 17:14:16,108 Manual reading of RFID Tag: [UID] s-AN- R-dM-lt-Bl-ck-St-r -0 -18- N-oR-ea-d - 9-02-01-23-10-00-01-  - , [Data] 
+2018-02-05 17:14:16,632 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:16,984 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:17,191 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:17,388 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:17,608 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:17,818 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:18,009 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:18,194 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:18,384 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:18,581 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:18,782 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:18,963 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:19,196 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:19,374 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:19,417 Manual reading of RFID Tag: [UID] s-FA- B, [Data] 
+2018-02-05 17:14:19,582 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:14:19,826 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data] 
+2018-02-05 17:15:38,444 [+] Client connected: 10.100.25.65
+2018-02-05 17:15:44,944 [+] Client connected: 10.100.25.65
+2018-02-05 17:16:59,441 Application Started
+2018-02-05 17:17:00,115 [+] Client connected: 10.100.25.64
+2018-02-05 17:17:02,443 [+] Client connected: 10.100.25.65
+2018-02-05 17:17:02,444  ** All clients connected **
+2018-02-05 17:17:02,539 Main PyQt window started
+2018-02-05 17:17:07,115 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:17:13,535 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:17:15,441 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-66-C6, [Data]  123456789020123100001   
+2018-02-05 17:17:19,325 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:17:25,789 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:17:29,114 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-66-C6, [Data]  123456789020123100001   
+2018-02-05 17:17:34,022 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:17:37,134 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-66-C6, [Data]  123456789020123100001   
+2018-02-05 17:17:46,956 Application terminated
+2018-02-05 17:19:10,799 Application Started
+2018-02-05 17:19:10,957 [+] Client connected: 10.100.25.64
+2018-02-05 17:19:12,447 [+] Client connected: 10.100.25.65
+2018-02-05 17:19:12,450  ** All clients connected **
+2018-02-05 17:19:12,690 Main PyQt window started
+2018-02-05 17:19:17,259 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:19:20,177 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-66-C6, [Data]  123456789020123100001   
+2018-02-05 17:19:25,342 Manual reading of RFID Tag: [UID] Kein Etikett gefunden, [Data] Kein Etikett gefunden
+2018-02-05 17:19:27,236 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-66-C6, [Data]  123456789020123100001   
+2018-02-05 17:19:29,684 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data] 
+2018-02-05 17:19:32,828 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:19:35,348 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-66-C6, [Data]  123456789020123100001   
+2018-02-05 17:19:37,740 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:19:38,888 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:19:39,479 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:19:39,829 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:19:40,005 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:19:40,470 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:19:40,977 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:19:41,460 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:19:41,940 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:19:42,644 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-6B-85, [Data]  NoRead  9020123100001   
+2018-02-05 17:19:45,572 Application terminated
+2018-02-05 17:19:49,338 Application Started
+2018-02-05 17:19:50,947 [+] Client connected: 10.100.25.65
+2018-02-05 17:19:51,575 [+] Client connected: 10.100.25.64
+2018-02-05 17:19:51,579  ** All clients connected **
+2018-02-05 17:19:51,908 Main PyQt window started
+2018-02-05 17:22:49,898 Application Started
+2018-02-05 17:22:50,046 [+] Client connected: 10.100.25.64
+2018-02-05 17:22:50,450 [+] Client connected: 10.100.25.65
+2018-02-05 17:22:50,456  ** All clients connected **
+2018-02-05 17:22:50,726 Main PyQt window started
+2018-02-05 17:22:54,661 Manual reading of RFID Tag: [UID] E0-04-01-50-81-2D-67-FE, [Data]  123456789020123100001   
+2018-02-05 17:23:03,345 Application terminated

@@ -6,6 +6,7 @@ import threading
 import RFH630_commands
 from time import gmtime, strftime
 import logging
+import time
 
 # The UI file is in the same folder as the project
 qtCreatorFile = "mainwindow_V4.ui"
@@ -93,7 +94,6 @@ class ThreadedServer(threading.Thread):
         self.stop_request.set()
         super(ThreadedServer, self).join(timeout)
 
-
 class ClientRFID(threading.Thread):
     def __init__(self, conn, automatic_q, manual_q, datamatrix_q, read_req_q, comms_q, status_q):
         super(ClientRFID, self).__init__()
@@ -115,16 +115,19 @@ class ClientRFID(threading.Thread):
         while not self.stop_request.isSet():
             while self.auto_loop:
                 self.write_rfid(self.read_request_q, self.data_matrix_q)
+            pass
 
     def join(self, timeout=2):
         self.stop_request.set()
         super(ClientRFID, self).join(2)
 
-    def loop_control(self):
-        if self.auto_loop:
-            self.auto_loop = False
-        else:
+    def loop_start(self):
             self.auto_loop = True
+            print self.auto_loop
+
+    def loop_stop(self):
+        self.auto_loop = False
+        print self.auto_loop
 
     def list_tags(self, tag_uid):
         # Check if the numbers of elements is >= 1000
@@ -168,27 +171,42 @@ class ClientRFID(threading.Thread):
 
         # Get the UID automatically from the device
         self.conn.sendall(RFH630_commands.get_UID_auto)
-        # expect something in return
         tag_uid = self.conn.recv(size)
 
-        # extract the UID from the response of the device
-        raw_uid, pretty_uid, spaces_uid = RFH630_commands.extract_uid(tag_uid)
+        if tag_uid != "NoRead":
+            # extract the UID from the response of the device
+            raw_uid, pretty_uid, spaces_uid = RFH630_commands.extract_uid(tag_uid)
 
-        # Read the content of the blocks (from - to of blocks is hard coded)
+            # Read the content of the blocks (from - to of blocks is hard coded)
 
-        # create the complete command for transmission
-        first_block = 0
-        final_block = 5
+            # create the complete command for transmission
+            first_block = 0
+            final_block = 5
 
-        read_command = RFH630_commands.read_blocks(spaces_uid, first_block, final_block)
+            read_command = RFH630_commands.read_blocks(spaces_uid, first_block, final_block)
+            self.conn.sendall(read_command)
 
-        self.conn.sendall(read_command)
+            # Expect something in return
+            tag_content = self.conn.recv(size)
+            tag_content = tag_content[22:]
 
-        # Expect something in return
-        tag_content = self.conn.recv(size)
-        tag_content = tag_content[22:]
+            if tag_content == " ":
+                tag_content = "Etikett ist leer"
+                # return values to caller
+                return pretty_uid, tag_content
+            else:
+                # return values to caller
+                return pretty_uid, tag_content
 
-        return pretty_uid, tag_content
+        else:
+            pretty_uid = "error"
+            tag_content = "error"
+            return pretty_uid, tag_content
+
+
+    def close_rfid_gate(self):
+        # close the reading gate
+        self.conn.sendall(RFH630_commands.stop_get_UID_auto)
 
     def write_rfid(self, read_q, data_m_q):
         size = 512
@@ -206,14 +224,6 @@ class ClientRFID(threading.Thread):
             # extract the UID from the response of the device
             raw_uid, pretty_uid, spaces_uid = RFH630_commands.extract_uid(tag_uid)
 
-            # Check the uniqueness of the Tag
-            # tag_is_unique = self.check_unique(complete_UID)
-            tag_is_unique = True
-
-            # Only one Tag was found in the HF Field
-            # TODO: Rework the delay logic, the pause is not between the insertion in the queue but the reading of the tag
-            # TODO: Error handling if no valid scanner Result
-
             # Log the event and write to the console
             info_tag_detected = "Tag detected with UID: " + pretty_uid
             self.comms_q.put(info_tag_detected)
@@ -222,8 +232,6 @@ class ClientRFID(threading.Thread):
             # Place the read request in the Queue
             read_request = 1
             read_q.put(read_request)
-            # The task is done
-            read_q.task_done()
 
             # Pull the Data matrix from the Queue
             data_matrix_result = data_m_q.get()
@@ -331,14 +339,14 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         # The delay for the slider
-        self.delay_time = 500
+        self.delay_time = 100
         self.timeoutTimer = QtCore.QTimer()
         self.timeoutTimer.setInterval(self.delay_time)  # The time on the slider in s
         self.timeoutTimer.setSingleShot(False)
         self.timeoutTimer.timeout.connect(self.recursive_timer)
 
         # The recursive timer for the message queue
-        self.pull_frequency = 500
+        self.pull_frequency = 100
         self.refresh_timer = QtCore.QTimer()
         self.refresh_timer.setInterval(self.pull_frequency)
         self.refresh_timer.setSingleShot(False)
@@ -373,10 +381,6 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
             print "I stopped because of an error: " + operation_result
             self.auto_stop()
 
-        else:
-            # Place a new job request for the RFID transponder in the queue
-            self.automatic_queue.put(1)
-
     def pull_messages(self):
         # Pulls messages from the message queue and forwards them to the console of the GUI
         while not self.comms_q.empty():
@@ -400,8 +404,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         super(QtGui.QMainWindow, self).closeEvent(event)
 
     def slider_valuechange(self):
-        self.delay_time = self.speed_slider.value() * 1000
-        # pass
+        #self.delay_time = self.speed_slider.value() * 1000
+         pass
 
     def console_output(self, input_text):
         # Write text to the console
@@ -410,7 +414,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.txt_console.append("\n")
 
     def auto_start(self):
-        self.automatic_trigger = True
+
         # Change the status of the buttons
         self.btn_auto_start.setEnabled(False)
         self.speed_slider.setEnabled(False)
@@ -426,8 +430,12 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.btn_auto_start.setStyleSheet("background-color: None")
         self.console_output("Automatisches Prozess gestarted")
         # Give the RFID worker the first job, the rest ones are given sequentially by the recursive timer
-        self.client_rfid.loop_control()
-        #self.automatic_loop()
+
+        # Call the method to start the auto loop
+        self.client_rfid.loop_start()
+
+        # Start the timer
+        self.timeoutTimer.start()
 
     def auto_stop(self):
         self.automatic_trigger = False
@@ -445,7 +453,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.console_output("Automatisches Prozess wurde angehalten")
         # QtGui.QApplication.processEvents()
 
-        self.client_rfid.loop_control()
+        # Call the method to stop the auto loop
+        self.client_rfid.loop_stop()
 
     def man_datamatrix(self):
         self.console_output("Information auf die Datamatrix wird ausgelesen")
@@ -469,9 +478,20 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
     def man_rfid(self):
         self.console_output("Transponder Information wird ausgelesen")
         rfid_uid, rfid_data = self.client_rfid.read_rfid()
-        self.txt_uid.setText(rfid_uid)
-        self.txt_data.setText(rfid_data)
-        logging.info("Manual reading of RFID Tag: [UID] %s, [Data] %s", rfid_uid, rfid_data)
+
+        if rfid_uid and rfid_data != "error":
+            self.txt_uid.setText(rfid_uid)
+            self.txt_data.setText(rfid_data)
+            logging.info("Manual reading of RFID Tag: [UID] %s, [Data] %s", rfid_uid, rfid_data)
+
+        else:
+            rfid_uid = "Kein Etikett gefunden"
+            rfid_data = "Kein Etikett gefunden"
+            self.txt_uid.setText(rfid_uid)
+            self.txt_data.setText(rfid_data)
+            logging.info("Manual reading of RFID Tag: [UID] %s, [Data] %s", rfid_uid, rfid_data)
+
+        self.client_rfid.close_rfid_gate()
 
     def automatic_loop(self):
         if self.automatic_trigger:

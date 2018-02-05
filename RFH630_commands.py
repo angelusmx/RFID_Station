@@ -10,6 +10,8 @@ import math
 # the trigger command is configured as well in the device
 get_UID_auto = "\x02read\x03"
 
+stop_get_UID_auto = "\x02no_read\x03"
+
 # Inventory / Get UID (All in field)
 get_UID = '\x02sMN CSGtUID\x03'
 
