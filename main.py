@@ -94,6 +94,7 @@ class ThreadedServer(threading.Thread):
         self.stop_request.set()
         super(ThreadedServer, self).join(timeout)
 
+
 class ClientRFID(threading.Thread):
     def __init__(self, conn, automatic_q, manual_q, datamatrix_q, read_req_q, comms_q, status_q):
         super(ClientRFID, self).__init__()
