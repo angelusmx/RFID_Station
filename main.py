@@ -115,55 +115,26 @@ class ClientRFID(threading.Thread):
         print "the RFID handling service started"
         while not self.stop_request.isSet():
             while self.auto_loop:
-                self.write_rfid(self.read_request_q, self.data_matrix_q)
+                status = self.write_rfid(self.read_request_q, self.data_matrix_q)
+                if status != "write_IO":
+                    self.comms_q.put(status)
+                    self.end_loop() # kill the loop
+                    break
+                else:
+                    status_text = "Schreibprozess IO"
+                    self.comms_q.put(status_text)
+                    self.Timeout() # Wait for a while
             pass
 
     def join(self, timeout=2):
         self.stop_request.set()
         super(ClientRFID, self).join(2)
 
-    def loop_start(self):
-            self.auto_loop = True
-            print self.auto_loop
+    def start_loop(self):
+        self.auto_loop = True
 
-    def loop_stop(self):
+    def end_loop(self):
         self.auto_loop = False
-        print self.auto_loop
-
-    def list_tags(self, tag_uid):
-        # Check if the numbers of elements is >= 1000
-        if len(self.tags_list) >= 1000:
-            # Reset the list
-            del self.tags_list[:]
-            # Insert tag in the list
-            self.tags_list.append(tag_uid)
-            list_entry_ready = True
-            return list_entry_ready
-
-        else:
-            self.tags_list.append(tag_uid)
-            list_entry_ready = True
-            return list_entry_ready
-
-    def check_unique(self, tag_uid):
-        # variable to communicate the status of the tag [0] = new [1] =  duplicated
-        response = False
-
-        if not self.tags_list:  # Pythonic way of checking if the list is empty
-            response = True
-            return response
-        else:
-            for element in self.tags_list:
-                if tag_uid == element:
-                    print "Duplicated UID, it will be ignored"
-                    response = False
-                    break
-                else:
-                    print "UID is unique to the station"
-                    response = True
-                    continue
-
-        return response
 
     def read_rfid(self):
 
@@ -204,23 +175,22 @@ class ClientRFID(threading.Thread):
             tag_content = "error"
             return pretty_uid, tag_content
 
-
-    def close_rfid_gate(self):
-        # close the reading gate
-        self.conn.sendall(RFH630_commands.stop_get_UID_auto)
-
     def write_rfid(self, read_q, data_m_q):
         size = 512
 
         # Get the UID automatically from the device
+        # We get something from the device or "NoRead", but we get something in any case
+        # The "NoRead" comes after the time out has expired
+
         self.conn.sendall(RFH630_commands.get_UID_auto)
-        # expect something in return
-        self.conn.settimeout(1)
-        try:
-            tag_uid = self.conn.recv(size)
-        except socket.timeout:
-            print "no data seen in " + str(1) + " seconds, trying later"
-            return
+        tag_uid = self.conn.recv(size)
+
+        # "NoRead" was recieved
+        if tag_uid == "NoRead":
+
+            error_code = "RFID_NoRead"
+            return error_code
+
         else:
             # extract the UID from the response of the device
             raw_uid, pretty_uid, spaces_uid = RFH630_commands.extract_uid(tag_uid)
@@ -240,7 +210,7 @@ class ClientRFID(threading.Thread):
             # Check the content of the scanned data
             if data_matrix_result == "NoRead":
                 # Read 2D Error
-                error_code = "Keine datamatrix"
+                error_code = "2D_NoRead"
                 self.status_q.put(error_code)
                 return error_code
 
@@ -256,8 +226,6 @@ class ClientRFID(threading.Thread):
 
                 if write_confirmation == "\x02sAN WrtMltBlckStr 0\x03":
                     print "*** Writing process IO for Tag ++++ " + str(pretty_uid) + "++++"
-                    # Enter the tag into the list
-                    self.list_tags(raw_uid)
                     # Entry in log and output to console
                     info_write_success = "Tag " + str(raw_uid) + " written with scanner data " \
                                                 + str(data_matrix_result) + "\n"
@@ -265,7 +233,7 @@ class ClientRFID(threading.Thread):
                     self.comms_q.put(info_write_success)
 
                     # Write the status of the variable
-                    error_code = "process completed"
+                    error_code = "write_IO"
                     self.status_q.put(error_code)
                     return error_code
 
@@ -273,12 +241,16 @@ class ClientRFID(threading.Thread):
                     print "\n" + "++++ Tag " + str(pretty_uid) + " could not be written"
 
                     # Write the status of the variable
-                    error_code = "Writing failed"
+                    error_code = "write_NIO"
                     self.status_q.put(error_code)
                     return error_code
 
     def close(self):
         self.conn.close()
+
+    def Timeout(self):
+        # Time to introduce between the calling of the write functions
+        time.sleep(2)
 
 
 class ClientScanner(threading.Thread):
@@ -309,7 +281,6 @@ class ClientScanner(threading.Thread):
 
                 # Place the value in the values queue
                 self.data_matrix_q.put(data_matrix)
-                #self.read_request_q.task_done()
 
     def join(self, timeout=None):
         self.stop_request.set()
@@ -344,7 +315,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.timeoutTimer = QtCore.QTimer()
         self.timeoutTimer.setInterval(self.delay_time)  # The time on the slider in s
         self.timeoutTimer.setSingleShot(False)
-        self.timeoutTimer.timeout.connect(self.recursive_timer)
+        self.timeoutTimer.timeout.connect(self.recursive_status_check)
 
         # The recursive timer for the message queue
         self.pull_frequency = 100
@@ -365,7 +336,6 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.btn_man_datamatrix.clicked.connect(self.man_datamatrix)
         self.btn_man_rfid.clicked.connect(self.man_rfid)
         self.speed_slider.valueChanged.connect(self.slider_valuechange)
-        self.automatic_trigger = False
         self.automatic_queue = automatic_queue
         self.manual_queue = manual_queue
         self.data_matrix_q = data_matrix_q
@@ -373,14 +343,16 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.comms_q = comms_q
         self.status_q = status_q
 
-    def recursive_timer(self):
-        # Executes this code every n seconds (as given by the slider)
-        operation_result = self.status_q.get()
-
-        if operation_result != "process completed":
-            # Stop the automatic process
-            print "I stopped because of an error: " + operation_result
-            self.auto_stop()
+    def recursive_status_check(self):
+        # Executes this code every n seconds
+        while not self.status_q.empty():
+            operation_result = self.status_q.get()
+            if operation_result != "write_IO":
+                # Stop the automatic process
+                print "I stopped because of an error: " + operation_result
+                self.auto_stop()
+        else:
+            pass
 
     def pull_messages(self):
         # Pulls messages from the message queue and forwards them to the console of the GUI
@@ -397,6 +369,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         # Terminate the communications to clients
         self.client_rfid.close()
         self.client_reader.close()
+        # Stop the recursive Timers
+        self.refresh_timer.stop()
         # Close all the threads
         for tr in threading.enumerate():
             if tr.isAlive():
@@ -430,17 +404,15 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.btn_auto_stop.setStyleSheet("background-color: Red")
         self.btn_auto_start.setStyleSheet("background-color: None")
         self.console_output("Automatisches Prozess gestarted")
-        # Give the RFID worker the first job, the rest ones are given sequentially by the recursive timer
 
-        # Call the method to start the auto loop
-        self.client_rfid.loop_start()
+        # Call the start loop method in RFID client
+        self.client_rfid.start_loop()
 
         # Start the timer
-        self.timeoutTimer.start()
+        #self.timeoutTimer.start()
 
     def auto_stop(self):
-        self.automatic_trigger = False
-        self.automatic_loop()
+        self.stop_request = True
         # Change the status of the buttons
         self.btn_auto_start.setEnabled(True)
         self.speed_slider.setEnabled(True)
@@ -455,7 +427,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         # QtGui.QApplication.processEvents()
 
         # Call the method to stop the auto loop
-        self.client_rfid.loop_stop()
+        self.client_rfid.end_loop()
 
     def man_datamatrix(self):
         self.console_output("Information auf die Datamatrix wird ausgelesen")
@@ -491,8 +463,6 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
             self.txt_uid.setText(rfid_uid)
             self.txt_data.setText(rfid_data)
             logging.info("Manual reading of RFID Tag: [UID] %s, [Data] %s", rfid_uid, rfid_data)
-
-        self.client_rfid.close_rfid_gate()
 
     def automatic_loop(self):
         if self.automatic_trigger:
