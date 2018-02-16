@@ -109,6 +109,7 @@ class ClientRFID(threading.Thread):
         self.tags_list = []
         self.stop_request = threading.Event()
         self.auto_loop = False
+        self.auto_loop_delay = 1000
 
     def run(self):
         # Call the tag writing method only once, the loop is implemented in the PyQt class
@@ -116,15 +117,18 @@ class ClientRFID(threading.Thread):
         while not self.stop_request.isSet():
             while self.auto_loop:
                 status = self.write_rfid(self.read_request_q, self.data_matrix_q)
-                if status != "write_IO":
-                    self.comms_q.put(status)
-                    self.end_loop() # kill the loop
+                if status == "RFID_NoRead":
+                    print "keep waiting"
                     break
                 else:
-                    status_text = "Schreibprozess IO"
-                    self.comms_q.put(status_text)
-                    self.Timeout() # Wait for a while
-            pass
+                    if status != "write_IO":
+                        self.comms_q.put(status)
+                        self.end_loop() # kill the loop
+                        break
+                    else:
+                        status_text = "Schreibprozess IO"
+                        self.comms_q.put(status_text)
+                        self.timeout() # Wait for a while
 
     def join(self, timeout=2):
         self.stop_request.set()
@@ -189,6 +193,8 @@ class ClientRFID(threading.Thread):
         if tag_uid == "NoRead":
 
             error_code = "RFID_NoRead"
+            # write to the Log file
+            logging.info("Write RFID Method returned: " + error_code)
             return error_code
 
         else:
@@ -212,6 +218,8 @@ class ClientRFID(threading.Thread):
                 # Read 2D Error
                 error_code = "2D_NoRead"
                 self.status_q.put(error_code)
+                # write to the Log file
+                logging.info("Write RFID Method returned: " + error_code)
                 return error_code
 
             else: # Some code was read
@@ -243,14 +251,17 @@ class ClientRFID(threading.Thread):
                     # Write the status of the variable
                     error_code = "write_NIO"
                     self.status_q.put(error_code)
+                    # write to the Log file
+                    logging.info("Write RFID Method returned: " + error_code)
                     return error_code
 
     def close(self):
         self.conn.close()
 
-    def Timeout(self):
+    def timeout(self):
         # Time to introduce between the calling of the write functions
-        time.sleep(2)
+        print self.auto_loop_delay
+        time.sleep(self.auto_loop_delay)
 
 
 class ClientScanner(threading.Thread):
@@ -310,10 +321,10 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
 
-        # The delay for the slider
+        # The reload time for the status check timer
         self.delay_time = 100
         self.timeoutTimer = QtCore.QTimer()
-        self.timeoutTimer.setInterval(self.delay_time)  # The time on the slider in s
+        self.timeoutTimer.setInterval(self.delay_time)  # For the moment hard coded in here
         self.timeoutTimer.setSingleShot(False)
         self.timeoutTimer.timeout.connect(self.recursive_status_check)
 
@@ -335,7 +346,10 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         # Define the callback functions of the manual functions
         self.btn_man_datamatrix.clicked.connect(self.man_datamatrix)
         self.btn_man_rfid.clicked.connect(self.man_rfid)
+
+        # The slider for the automatic loop delay
         self.speed_slider.valueChanged.connect(self.slider_valuechange)
+
         self.automatic_queue = automatic_queue
         self.manual_queue = manual_queue
         self.data_matrix_q = data_matrix_q
@@ -379,8 +393,9 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         super(QtGui.QMainWindow, self).closeEvent(event)
 
     def slider_valuechange(self):
-        #self.delay_time = self.speed_slider.value() * 1000
-         pass
+        # value of the slider is configured from 1 to 10, time values are given in s (to the time.sleep function)
+        self.delay_time = self.speed_slider.value()
+        self.client_rfid.auto_loop_delay = self.delay_time
 
     def console_output(self, input_text):
         # Write text to the console
@@ -389,14 +404,13 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.txt_console.append("\n")
 
     def auto_start(self):
-
         # Change the status of the buttons
         self.btn_auto_start.setEnabled(False)
         self.speed_slider.setEnabled(False)
         self.btn_man_datamatrix.setEnabled(False)
         self.btn_man_rfid.setEnabled(False)
 
-        self.timeoutTimer.setInterval(self.delay_time)
+        #self.timeoutTimer.setInterval(self.delay_time)
 
         # Change the colors of the status buttons
         self.btn_status_run.setStyleSheet("background-color: green")
@@ -408,8 +422,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         # Call the start loop method in RFID client
         self.client_rfid.start_loop()
 
-        # Start the timer
-        #self.timeoutTimer.start()
+        # Start the timer that checks the status of the process periodically
+        self.timeoutTimer.start()
 
     def auto_stop(self):
         self.stop_request = True
@@ -428,6 +442,9 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 
         # Call the method to stop the auto loop
         self.client_rfid.end_loop()
+
+        # Stop the recursive status check timer
+        self.timeoutTimer.stop()
 
     def man_datamatrix(self):
         self.console_output("Information auf die Datamatrix wird ausgelesen")
