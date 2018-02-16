@@ -109,7 +109,7 @@ class ClientRFID(threading.Thread):
         self.tags_list = []
         self.stop_request = threading.Event()
         self.auto_loop = False
-        self.auto_loop_delay = 1000
+        self.auto_loop_delay = 1
 
     def run(self):
         # Call the tag writing method only once, the loop is implemented in the PyQt class

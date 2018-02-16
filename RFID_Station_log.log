@@ -4017,3 +4017,41 @@ INFO:root:Main PyQt window started
 2018-02-16 10:07:50,190 Tag E0040150812D6B85 written with scanner data 123456789020123100001
 
 2018-02-16 10:07:56,996 Application terminated
+2018-02-16 10:19:20,519 Application Started
+2018-02-16 10:19:20,982 [+] Client connected: 10.100.25.64
+2018-02-16 10:19:22,213 [+] Client connected: 10.100.25.65
+2018-02-16 10:19:22,216  ** All clients connected **
+2018-02-16 10:19:22,460 Main PyQt window started
+2018-02-16 10:19:25,790 Tag detected with UID: E0-04-01-50-81-2D-6B-85
+2018-02-16 10:19:26,012 Tag E0040150812D6B85 written with scanner data 123456789020123100001
+
+2018-02-16 10:19:34,835 Application terminated
+2018-02-16 10:20:04,351 Application Started
+2018-02-16 10:20:04,836 [+] Client connected: 10.100.25.64
+2018-02-16 10:20:05,217 [+] Client connected: 10.100.25.65
+2018-02-16 10:20:05,219  ** All clients connected **
+2018-02-16 10:20:05,318 Main PyQt window started
+2018-02-16 10:20:08,634 Tag detected with UID: E0-04-01-50-81-2D-6B-85
+2018-02-16 10:20:08,845 Tag E0040150812D6B85 written with scanner data 123456789020123100001
+
+2018-02-16 10:20:09,875 Tag detected with UID: E0-04-01-50-81-2D-6B-85
+2018-02-16 10:20:10,082 Tag E0040150812D6B85 written with scanner data 123456789020123100001
+
+2018-02-16 10:20:11,108 Tag detected with UID: E0-04-01-50-81-2D-6B-85
+2018-02-16 10:20:11,318 Tag E0040150812D6B85 written with scanner data 123456789020123100001
+
+2018-02-16 10:20:12,346 Tag detected with UID: E0-04-01-50-81-2D-6B-85
+2018-02-16 10:20:12,555 Tag E0040150812D6B85 written with scanner data 123456789020123100001
+
+2018-02-16 10:20:14,608 Write RFID Method returned: RFID_NoRead
+2018-02-16 10:20:15,503 Tag detected with UID: E0-04-01-50-81-2D-66-C6
+2018-02-16 10:20:16,559 Write RFID Method returned: 2D_NoRead
+2018-02-16 10:20:20,413 Tag detected with UID: E0-04-01-50-81-2D-66-C6
+2018-02-16 10:20:21,470 Write RFID Method returned: 2D_NoRead
+2018-02-16 10:20:43,631 Application terminated
+2018-02-16 11:12:44,095 Application Started
+2018-02-16 11:12:44,627 [+] Client connected: 10.100.25.65
+2018-02-16 11:12:46,565 [+] Client connected: 10.100.25.64
+2018-02-16 11:12:46,569  ** All clients connected **
+2018-02-16 11:12:46,936 Main PyQt window started
+2018-02-16 11:12:49,262 Application terminated
