@@ -431,7 +431,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Verzögerungszeit</string>
+       <string>Verzögerungszeit [s]</string>
       </property>
      </widget>
      <widget class="QLabel" name="lbl_6">
@@ -572,28 +572,6 @@
       </property>
       <property name="indent">
        <number>0</number>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="chk_delay">
-      <property name="geometry">
-       <rect>
-        <x>155</x>
-        <y>39</y>
-        <width>91</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Calibri</family>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Aktivieren</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="lbl_1">
@@ -1043,11 +1021,6 @@
        </item>
       </layout>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab_3">
-     <attribute name="title">
-      <string>Schreiben</string>
-     </attribute>
     </widget>
    </widget>
    <widget class="QTextEdit" name="txt_console">

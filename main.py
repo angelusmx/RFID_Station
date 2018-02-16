@@ -90,6 +90,10 @@ class ThreadedServer(threading.Thread):
                 logging.info(info_all_connected)
                 self.comms_q.put(info_all_connected)
 
+        for tr in threading.enumerate():
+            logging.info(tr)
+
+
     def join(self, timeout=None):
         self.stop_request.set()
         super(ThreadedServer, self).join(timeout)
@@ -115,20 +119,25 @@ class ClientRFID(threading.Thread):
         # Call the tag writing method only once, the loop is implemented in the PyQt class
         print "the RFID handling service started"
         while not self.stop_request.isSet():
-            while self.auto_loop:
-                status = self.write_rfid(self.read_request_q, self.data_matrix_q)
-                if status == "RFID_NoRead":
-                    print "keep waiting"
-                    break
+            while True:
+                if not self.auto_loop:
+                    time.sleep(0.1)
+                    continue
                 else:
-                    if status != "write_IO":
-                        self.comms_q.put(status)
-                        self.end_loop() # kill the loop
+                    status = self.write_rfid(self.read_request_q, self.data_matrix_q)
+                    if status == "RFID_NoRead":
+                        print "keep waiting"
                         break
                     else:
-                        status_text = "Schreibprozess IO"
-                        self.comms_q.put(status_text)
-                        self.timeout() # Wait for a while
+                        if status != "Schreiben IO":
+                            self.comms_q.put(status)
+                            self.end_loop() # kill the loop
+                            break
+                        else:
+                            status_text = "Schreibprozess IO"
+                            self.comms_q.put(status_text)
+                            self.timeout() # Wait for a while
+
 
     def join(self, timeout=2):
         self.stop_request.set()
@@ -216,7 +225,7 @@ class ClientRFID(threading.Thread):
             # Check the content of the scanned data
             if data_matrix_result == "NoRead":
                 # Read 2D Error
-                error_code = "2D_NoRead"
+                error_code = "2D Lesen NIO"
                 self.status_q.put(error_code)
                 # write to the Log file
                 logging.info("Write RFID Method returned: " + error_code)
@@ -233,7 +242,7 @@ class ClientRFID(threading.Thread):
                 write_confirmation = self.conn.recv(size)
 
                 if write_confirmation == "\x02sAN WrtMltBlckStr 0\x03":
-                    print "*** Writing process IO for Tag ++++ " + str(pretty_uid) + "++++"
+                    #print "*** Writing process IO for Tag ++++ " + str(pretty_uid) + "++++"
                     # Entry in log and output to console
                     info_write_success = "Tag " + str(raw_uid) + " written with scanner data " \
                                                 + str(data_matrix_result) + "\n"
@@ -241,7 +250,7 @@ class ClientRFID(threading.Thread):
                     self.comms_q.put(info_write_success)
 
                     # Write the status of the variable
-                    error_code = "write_IO"
+                    error_code = "Schreiben IO"
                     self.status_q.put(error_code)
                     return error_code
 
@@ -249,7 +258,7 @@ class ClientRFID(threading.Thread):
                     print "\n" + "++++ Tag " + str(pretty_uid) + " could not be written"
 
                     # Write the status of the variable
-                    error_code = "write_NIO"
+                    error_code = "Schreiben NIO"
                     self.status_q.put(error_code)
                     # write to the Log file
                     logging.info("Write RFID Method returned: " + error_code)
@@ -260,7 +269,6 @@ class ClientRFID(threading.Thread):
 
     def timeout(self):
         # Time to introduce between the calling of the write functions
-        print self.auto_loop_delay
         time.sleep(self.auto_loop_delay)
 
 
@@ -278,13 +286,13 @@ class ClientScanner(threading.Thread):
         self.buffer_size = 512
 
     def run(self):
-        # print "the 2D Scanner handling service started"
+        print "the 2D Scanner handling service started"
         while not self.stop_request.isSet():
             try:
                 self.read_request_q.get(False)
             except Queue.Empty:
                 # Handle empty queue here
-                pass
+                time.sleep(0.1)
             else:
                 # Handle task here and call q.task_done()
                 self.conn.sendall("\x02read\x03")
@@ -361,7 +369,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         # Executes this code every n seconds
         while not self.status_q.empty():
             operation_result = self.status_q.get()
-            if operation_result != "write_IO":
+            if operation_result != "Schreiben IO":
                 # Stop the automatic process
                 print "I stopped because of an error: " + operation_result
                 self.auto_stop()
@@ -374,6 +382,9 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
             # Forward to the console
             message = self.comms_q.get()
             self.console_output(message)
+            if "NIO" in message:
+                # if any error has been found
+                self.btn_status_err.setStyleSheet("background-color: Red")
         else:
             pass
 
@@ -415,6 +426,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         # Change the colors of the status buttons
         self.btn_status_run.setStyleSheet("background-color: green")
         self.btn_status_idle.setStyleSheet("background-color: None")
+        self.btn_status_err.setStyleSheet("background-color: None")
         self.btn_auto_stop.setStyleSheet("background-color: Red")
         self.btn_auto_start.setStyleSheet("background-color: None")
         self.console_output("Automatisches Prozess gestarted")
@@ -481,17 +493,6 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
             self.txt_data.setText(rfid_data)
             logging.info("Manual reading of RFID Tag: [UID] %s, [Data] %s", rfid_uid, rfid_data)
 
-    def automatic_loop(self):
-        if self.automatic_trigger:
-            lots_of_jobs = 1000
-            for i in range(1, lots_of_jobs, 1):
-                self.timeoutTimer.start()
-
-        else:
-            self.automatic_queue.queue.clear()
-            self.timeoutTimer.stop()
-
-
 # ************** Start the server **************
 
 # Port number for the TCP Server
@@ -505,6 +506,7 @@ while tcp_server.clients_count != 2:
     continue
 
 w = MyApp(automatic_queue, manual_queue, data_matrix_q, read_request_q, tcp_server.rfid_client, tcp_server.scanner_client, comms_queue, status_queue)
+
 
 w.setWindowTitle('RFID Labels Station V1.0')
 w.show()
