@@ -45,7 +45,6 @@ class ThreadedServer(threading.Thread):
             self.scanner_client = ClientScanner
             self.auto_trigger = False
 
-        # TODO: Place the right error after the socket
         except socket.error:
             # Log to file and output to console
             info_error_socket = 'Failed to create socket'
@@ -93,7 +92,6 @@ class ThreadedServer(threading.Thread):
         for tr in threading.enumerate():
             logging.info(tr)
 
-
     def join(self, timeout=None):
         self.stop_request.set()
         super(ThreadedServer, self).join(timeout)
@@ -131,13 +129,12 @@ class ClientRFID(threading.Thread):
                     else:
                         if status != "Schreiben IO":
                             self.comms_q.put(status)
-                            self.end_loop() # kill the loop
+                            self.end_loop()  # kill the loop
                             break
                         else:
                             status_text = "Schreibprozess IO"
                             self.comms_q.put(status_text)
-                            self.timeout() # Wait for a while
-
+                            self.timeout()  # Wait for a while
 
     def join(self, timeout=2):
         self.stop_request.set()
@@ -231,7 +228,7 @@ class ClientRFID(threading.Thread):
                 logging.info("Write RFID Method returned: " + error_code)
                 return error_code
 
-            else: # Some code was read
+            else:  # Some code was read
 
                 # create the complete command for transmission
                 transmission_command = RFH630_commands.write_custom_string(spaces_uid, data_matrix_result)
@@ -242,7 +239,7 @@ class ClientRFID(threading.Thread):
                 write_confirmation = self.conn.recv(size)
 
                 if write_confirmation == "\x02sAN WrtMltBlckStr 0\x03":
-                    #print "*** Writing process IO for Tag ++++ " + str(pretty_uid) + "++++"
+                    # print "*** Writing process IO for Tag ++++ " + str(pretty_uid) + "++++"
                     # Entry in log and output to console
                     info_write_success = "Tag " + str(raw_uid) + " written with scanner data " \
                                                 + str(data_matrix_result) + "\n"
@@ -364,6 +361,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.read_request_q = read_request_q
         self.comms_q = comms_q
         self.status_q = status_q
+        self.stop_request = False
 
     def recursive_status_check(self):
         # Executes this code every n seconds
@@ -421,8 +419,6 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
         self.btn_man_datamatrix.setEnabled(False)
         self.btn_man_rfid.setEnabled(False)
 
-        #self.timeoutTimer.setInterval(self.delay_time)
-
         # Change the colors of the status buttons
         self.btn_status_run.setStyleSheet("background-color: green")
         self.btn_status_idle.setStyleSheet("background-color: None")
@@ -461,7 +457,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
     def man_datamatrix(self):
         self.console_output("Information auf die Datamatrix wird ausgelesen")
         datamatrix = self.client_reader.read()
-        if datamatrix!= "NoRead":
+        if datamatrix != "NoRead":
             lot_number = datamatrix[0:10]
             year_of_man = datamatrix[10:12]
             month_of_man = datamatrix[12:14]
@@ -495,8 +491,8 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 
 # ************** Start the server **************
 
-# Port number for the TCP Server
-port_num = 2113
+
+port_num = 2113  # Port number for the TCP Server
 app = QtGui.QApplication(sys.argv)
 # Instantiate the server class and start listening for clients
 tcp_server = ThreadedServer('', port_num, automatic_queue, manual_queue, data_matrix_q, read_request_q, comms_queue, status_queue)
