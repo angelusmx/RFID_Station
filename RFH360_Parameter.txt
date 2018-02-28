@@ -1,0 +1,28 @@
+sMN SetAccessMode 3 7A99FDC6
+sMN mSCloadfacdef
+sWN CS_TrspUpdNeed 1
+sWN eObjectTrigger 7859 A4D 0
+sWN UCEnFltrLfTme 1
+sWN EIIpAddr A 64 19 41
+sWN EIAuxProt 0
+sWN EVstrgoodr 0 1 9 Multcodes
+sWN EIHstSrvClnt 1
+sWN EIHstPort 841
+sWN OFtplstr1 4B \x02[iec _GoodReadCond][fc TransponderDone][$UID;f]-----[e][l]NoRead[e]\x03
+sWN eObjectPresent 7859 A4D 0
+sWN eObjectPriority 7859 A4D 0
+sWN eHeartBeat 33879 9 9 HeartBeat
+sWN eSystemGate 7859 A4D 0
+sWN UCNbOfTrnsp 1
+sWN EVcndnames 5 9 Multcodes F TransponderDone 11 TransponderFailed F ReadingGateDone E SignalStrength
+sWN CSSlSlct 2
+sWN eReadingGate 7859 A4D 0
+sWN SCUIVers 1
+sWN eClusterTrigger 7859 A4D 0
+sWN EVcond 5 0 1 0 0 5 VCC=1 0 1 1 0 5 VAL=1 0 1 1 0 5 VAL=0 0 1 0 0 6 RGPR=1 0 1 1 0 8 ARSAVG>4
+sWN UCMxFltrLfTme 1E
+sWN EIHstSrvAddr A 64 19 79
+sWN ExtDevFacDflt 2
+sWN eResult1 33816 5 1
+sMN mEEwriteall
+sMN Run
