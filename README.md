@@ -1,9 +1,6 @@
-# RFID Writing Station for HF Labels
+# Writing Station for RFID HF Labels
 
 The application transports the information printed on a 2D Datamatrix into a HF-RFID Transponder, the datamatrix and the transponder constitute a single unit (a label). The labels are delivered in a roll, there are 3 different formats, the station can be mechanically adjusted to accomodate the three diferent formats. The formats are for the software irrelevant.
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
