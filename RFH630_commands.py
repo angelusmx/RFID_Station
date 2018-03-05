@@ -32,6 +32,21 @@ write_multiple_string = "sMN WrtMltBlckStr"
 
 write_multiple_test = '\x02sMN WrtMltBlckStr 20 E1 75 37 50 1 4 E0 0 1 8 12345679\x03'
 
+# Check the configuration of the Device in SOPAS to see which output is set to be used with the commands
+# The outputs can alternatively be set automatically when the "Good Read", this needs to specifically configured
+
+# Set the digital output 2
+SetDO2 = '\x02sMN mDOSetOutput 2 1\x03'
+
+# Reset the digital output 1
+ResetDO2 = '\x02sMN mDOSetOutput 2 0\x03'
+
+# Set the digital output 1
+SetDO1 = '\x02sMN mDOSetOutput 1 1\x03'
+
+# Reset the digital output 1
+ResetDO1 = '\x02sMN mDOSetOutput 1 0\x03'
+
 
 def read_blocks(tag_uid, start_block, finish_block):
 
